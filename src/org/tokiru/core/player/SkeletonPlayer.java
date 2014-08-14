@@ -6,10 +6,7 @@ import org.tokiru.core.board.BoardState;
 import org.tokiru.core.card.Card;
 import org.tokiru.core.card.Deck;
 import org.tokiru.core.card.SkeletonDeck;
-import org.tokiru.core.turn.AttackTurn;
-import org.tokiru.core.turn.EndTurn;
-import org.tokiru.core.turn.PlayCardTurn;
-import org.tokiru.core.turn.Turn;
+import org.tokiru.core.turn.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -55,33 +52,6 @@ public class SkeletonPlayer implements Player {
     @Override
     public Turn turn(BoardState state) {
         System.out.print("turn pls: ");
-//        try {
-//            int turnType = System.in.read();
-//            Turn result = null;
-//            switch (turnType) {
-//                case '1':
-//                    int a = System.in.read() - '1';
-//                    int b = System.in.read() - '1';
-//                    result = new AttackTurn(a, b);
-//                    break;
-//
-//                case '2':
-//                    System.in.read();
-//                    a = System.in.read() - '1';
-//                    System.in.read();
-//                    b = System.in.read() - '1';
-//                    result = new PlayCardTurn(a, b);
-//                    break;
-//            }
-//
-//            if (result != null) {
-//                return result;
-//            } else {
-//                return new EndTurn();
-//            }
-//        } catch (IOException e) {
-//            return new EndTurn();
-//        }
 
         try {
             String s = reader.readLine();
@@ -94,6 +64,8 @@ public class SkeletonPlayer implements Player {
                 return new PlayCardTurn(a, b);
             } else if (type == 2) {
                 return new AttackTurn(a, b);
+            } else if (type == -1) {
+                return new ConcedeTurn();
             } else {
                 return new EndTurn();
             }

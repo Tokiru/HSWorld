@@ -137,6 +137,12 @@ public class SkeletonCreature implements Creature {
     }
 
     @Override
+    public void destroy() {
+        this.health = 0;
+        die();
+    }
+
+    @Override
     public String toString() {
         return "name = " + name + " health = " + health + " attack = " + attack;
     }

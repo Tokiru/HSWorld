@@ -48,6 +48,12 @@ public class Hero implements Creature {
     }
 
     @Override
+    public void destroy() {
+        health = 0;
+        die();
+    }
+
+    @Override
     public int getHealth() {
         return health;
     }

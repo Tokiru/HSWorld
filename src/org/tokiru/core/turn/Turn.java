@@ -13,6 +13,7 @@ public abstract class Turn {
     public enum TurnType {
         PLAY_CARD,
         ATTACK,
-        END_TURN
+        END_TURN,
+        CONCEDE
     }
 }

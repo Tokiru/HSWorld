@@ -110,6 +110,9 @@ public class Game {
                     } else {
                         System.out.println("not enough mana");
                     }
+                } else if (type == Turn.TurnType.CONCEDE) {
+                    boardState.getHero(currentPlayerID).destroy();
+                    break;
                 }
             }
 

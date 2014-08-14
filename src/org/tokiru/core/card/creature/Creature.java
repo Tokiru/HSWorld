@@ -30,4 +30,6 @@ public interface Creature {
     public boolean canAttack(Creature target);
 
     public int getSpellDamage();
+
+    void destroy();
 }
