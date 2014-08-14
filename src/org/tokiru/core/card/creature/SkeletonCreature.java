@@ -2,11 +2,13 @@ package org.tokiru.core.card.creature;
 
 import org.tokiru.core.board.BoardState;
 import org.tokiru.core.event.Event;
+import org.tokiru.core.event.EventManager;
+import org.tokiru.core.event.Subscriber;
 
 /**
  * Created by tokiru.
  */
-public class SkeletonCreature implements Creature {
+public class SkeletonCreature implements Creature, Subscriber {
 
     String name;
     int health;
@@ -20,6 +22,7 @@ public class SkeletonCreature implements Creature {
     private int maxNumberOfAttacks;
     private boolean firstTurn;
     private BoardState boardState;
+    private EventManager eventManager;
 
     public SkeletonCreature(int health, int attack, String name) {
         this.health = health;
@@ -68,8 +71,10 @@ public class SkeletonCreature implements Creature {
     }
 
     @Override
-    public void spawn(BoardState boardState) {
+    public void spawn(BoardState boardState, EventManager eventManager) {
         this.boardState = boardState;
+        this.eventManager = eventManager;
+        eventManager.subscribe(this, Event.EventType.END_TURN);
     }
 
     @Override
@@ -91,14 +96,6 @@ public class SkeletonCreature implements Creature {
     public void hit(Creature creature) {
         creature.takeDamage(attack);
         numberOfAttacksThisTurn++;
-    }
-
-    @Override
-    public void acceptEvent(Event event) {
-        if (event.getType() == Event.EventType.END_TURN) {
-            numberOfAttacksThisTurn = 0;
-            firstTurn = false;
-        }
     }
 
     @Override
@@ -145,5 +142,13 @@ public class SkeletonCreature implements Creature {
     @Override
     public String toString() {
         return "name = " + name + " health = " + health + " attack = " + attack;
+    }
+
+    @Override
+    public void accept(Event event) {
+        if (event.getType() == Event.EventType.END_TURN) {
+            numberOfAttacksThisTurn = 0;
+            firstTurn = false;
+        }
     }
 }

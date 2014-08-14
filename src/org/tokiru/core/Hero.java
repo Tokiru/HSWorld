@@ -3,15 +3,18 @@ package org.tokiru.core;
 import org.tokiru.core.board.BoardState;
 import org.tokiru.core.card.creature.Creature;
 import org.tokiru.core.event.Event;
+import org.tokiru.core.event.EventManager;
+import org.tokiru.core.event.Subscriber;
 
 /**
  * Created by tokiru.
  */
-public class Hero implements Creature {
+public class Hero implements Creature, Subscriber {
 
     private HeroClass heroClass;
     private int health;
     private BoardState boardState;
+    private EventManager eventManager;
 
     public Hero(HeroClass heroClass) {
         this.heroClass = heroClass;
@@ -24,11 +27,6 @@ public class Hero implements Creature {
 
     @Override
     public void hit(Creature creature) {
-
-    }
-
-    @Override
-    public void acceptEvent(Event event) {
 
     }
 
@@ -72,8 +70,9 @@ public class Hero implements Creature {
     }
 
     @Override
-    public void spawn(BoardState boardState) {
+    public void spawn(BoardState boardState, EventManager eventManager) {
         this.boardState = boardState;
+        this.eventManager = eventManager;
     }
 
     @Override
@@ -89,5 +88,10 @@ public class Hero implements Creature {
     @Override
     public String toString() {
         return getName() + " " + health;
+    }
+
+    @Override
+    public void accept(Event event) {
+
     }
 }
