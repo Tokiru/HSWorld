@@ -1,6 +1,7 @@
 package org.tokiru.core.card.creature;
 
 import org.tokiru.core.board.BoardState;
+import org.tokiru.core.event.CharacterHealEvent;
 import org.tokiru.core.event.Event;
 import org.tokiru.core.event.EventManager;
 import org.tokiru.core.event.Subscriber;
@@ -80,7 +81,9 @@ public class SkeletonCreature implements Creature, Subscriber {
 
     @Override
     public void takeHeal(int heal) {
+        int oldHealth = health;
         this.health = Math.min(health + heal, maxHealth);
+        eventManager.send(new CharacterHealEvent(this, health - oldHealth));
     }
 
     @Override
