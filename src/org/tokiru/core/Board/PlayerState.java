@@ -78,7 +78,8 @@ public class PlayerState {
     }
 
     public List<Creature> getMinions() {
-        return creatures;
+        List<Creature> result = new ArrayList<>(creatures);
+        return result;
     }
 
     public List<Creature> getCharacters(){
