@@ -2,6 +2,7 @@ package org.tokiru.core.card;
 
 import org.tokiru.core.card.creature.MinionBuilder;
 import org.tokiru.core.card.creature.MinionCard;
+import org.tokiru.core.card.creature.neutral.KnifeJuggler;
 import org.tokiru.core.card.spell.mage.Flamestrike;
 
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ public class SkeletonDeck implements Deck {
         cards = new ArrayList<>();
         cardCounter = 0;
 
+        cards.add(new MinionCard(2, new KnifeJuggler()));
         cards.add(new MinionBuilder().setAttack(2).setHealth(1).charge().setName("charger").setCost(2).getCard());
         cards.add(new MinionBuilder().setAttack(0).setHealth(10).taunt().setName("taunt").setCost(3).getCard());
         cards.add(new Flamestrike());

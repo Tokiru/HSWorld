@@ -3,6 +3,7 @@ package org.tokiru.core.card.creature;
 import org.tokiru.core.board.BoardState;
 import org.tokiru.core.event.Event;
 import org.tokiru.core.event.EventManager;
+import org.tokiru.core.player.Player;
 
 /**
  * Created by tokiru.
@@ -14,7 +15,7 @@ public interface Creature {
 
     void takeDamage(int damage);
 
-    void spawn(BoardState boardState, EventManager eventManager);
+    void spawn(Player owner, BoardState boardState, EventManager eventManager);
 
     void die();
 
@@ -24,11 +25,13 @@ public interface Creature {
 
     void hit(Creature creature);
 
-    public boolean isTaunt();
+    boolean isTaunt();
 
-    public boolean canAttack(Creature target);
+    boolean canAttack(Creature target);
 
-    public int getSpellDamage();
+    int getSpellDamage();
 
     void destroy();
+
+    Player getOwner();
 }
