@@ -127,6 +127,23 @@ public class BoardState {
         return playerStates.get(playerID).getMinions();
     }
 
+    public List<Creature> getEnemyMinions(int playerID) {
+        return getFriendlyMinions(1 - playerID);
+    }
+
+    public List<Creature> getEnemyCharacters(int playerID) {
+        return getFriendlyCharacters(1 - playerID);
+    }
+
+    public int getPlayerID(Creature creature) {
+        int id = getID(creature);
+        if (id < MAGIC) {
+            return 0;
+        } else {
+            return 1;
+        }
+    }
+
     public List<Creature> getAllMinions() {
         List<Creature> result = getFriendlyMinions(0);
         result.addAll(getFriendlyMinions(1));

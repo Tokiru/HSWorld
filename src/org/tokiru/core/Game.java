@@ -103,6 +103,7 @@ public class Game {
             for (Creature creature : boardState.getAllCharacters()) {
                 creature.acceptEvent(new EndTurnEvent());
             }
+                      
             currentPlayerID = 1 - currentPlayerID;
         }
 

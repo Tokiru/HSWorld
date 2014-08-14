@@ -98,7 +98,23 @@ public class SkeletonCreature implements Creature {
         if (firstTurn && !charge) {
             return false;
         } else {
-            return numberOfAttacksThisTurn < maxNumberOfAttacks;
+            if (numberOfAttacksThisTurn >= maxNumberOfAttacks) {
+                return false;
+            } else {
+                if (target.isTaunt()) {
+                    return true;
+                } else {
+                    boolean result = true;
+                    for (Creature creature : boardState.getEnemyMinions(boardState.getPlayerID(this))) {
+                        if (creature.isTaunt()) {
+                            result = false;
+                            break;
+                        }
+                    }
+
+                    return result;
+                }
+            }
         }
     }
 
@@ -117,9 +133,9 @@ public class SkeletonCreature implements Creature {
     boolean windFurry;
 
 
-    int numberOfAttacksThisTurn;
-    int maxNumberOfAttacks;
-    boolean firstTurn;
+    private int numberOfAttacksThisTurn;
+    private int maxNumberOfAttacks;
+    private boolean firstTurn;
 
     private BoardState boardState;
 }

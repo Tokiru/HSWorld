@@ -15,7 +15,9 @@ public class SkeletonDeck implements Deck {
         cards = new ArrayList<>();
         cardCounter = 0;
 
-        cards.add(new MinionBuilder().setAttack(2).setHealth(1).charge().getCard());
+        cards.add(new MinionBuilder().setAttack(2).setHealth(1).charge().setName("charger").getCard());
+        cards.add(new MinionBuilder().setAttack(0).setHealth(10).taunt().setName("taunt").getCard());
+        cards.add(new MinionBuilder().setAttack(0).setHealth(10).taunt().setName("taunt").getCard());
 
         while (cards.size() < SIZE) {
             cards.add(new MinionCard((int) (10*Math.random()), (int) (10*Math.random()), (int) (10*Math.random())));
