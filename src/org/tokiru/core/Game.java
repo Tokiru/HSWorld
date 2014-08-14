@@ -9,6 +9,7 @@ import org.tokiru.core.card.creature.MinionCard;
 import org.tokiru.core.card.spell.SpellCard;
 import org.tokiru.core.card.spell.neutral.Coin;
 import org.tokiru.core.event.EndTurnEvent;
+import org.tokiru.core.event.EventManager;
 import org.tokiru.core.player.Player;
 import org.tokiru.core.turn.AttackTurn;
 import org.tokiru.core.turn.PlayCardTurn;
@@ -25,9 +26,12 @@ public class Game {
     private State state;
     private BoardState boardState;
 
+    public EventManager eventManager;
+
     public Game() {
         players = new ArrayList<>();
         state = State.PREPARATION;
+        eventManager = new EventManager();
     }
 
     public void registerPlayer(Player player) {
