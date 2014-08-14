@@ -1,8 +1,8 @@
 package org.tokiru.core.player;
 
-import org.tokiru.core.Board.BoardState;
 import org.tokiru.core.Hero;
 import org.tokiru.core.HeroClass;
+import org.tokiru.core.board.BoardState;
 import org.tokiru.core.card.Card;
 import org.tokiru.core.card.Deck;
 import org.tokiru.core.card.SkeletonDeck;
@@ -13,10 +13,7 @@ import org.tokiru.core.turn.Turn;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.nio.channels.Channels;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,6 +21,11 @@ import java.util.stream.Collectors;
  * Created by tokiru.
  */
 public class SkeletonPlayer implements Player {
+    private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    private final Hero hero;
+    private final Deck deck;
+    private String name;
+
     public SkeletonPlayer() {
         this("Unnamed");
     }
@@ -43,6 +45,7 @@ public class SkeletonPlayer implements Player {
     public Deck getDeck() {
         return deck;
     }
+
     @Override
     public List<Boolean> mulligan(List<Card> cards) {
         List<Boolean> result = cards.stream().map(card -> true).collect(Collectors.toList());
@@ -104,9 +107,4 @@ public class SkeletonPlayer implements Player {
     public String getName() {
         return name;
     }
-
-    private final Hero hero;
-    private final Deck deck;
-    private String name;
-    private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 }

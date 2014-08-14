@@ -4,12 +4,13 @@ package org.tokiru.core.turn;
  * Created by tokiru.
  */
 public class AttackTurn extends Turn {
+    private int fromID;
+    private int toID;
+
     public AttackTurn(int fromID, int toID) {
         this.fromID = fromID;
         this.toID = toID;
     }
-
-    private int fromID;
 
     public int getFromID() {
         return fromID;
@@ -18,8 +19,6 @@ public class AttackTurn extends Turn {
     public int getToID() {
         return toID;
     }
-
-    private int toID;
 
     @Override
     public TurnType getType() {

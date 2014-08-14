@@ -1,6 +1,6 @@
 package org.tokiru.core;
 
-import org.tokiru.core.Board.BoardState;
+import org.tokiru.core.board.BoardState;
 import org.tokiru.core.card.creature.Creature;
 import org.tokiru.core.event.Event;
 
@@ -8,6 +8,10 @@ import org.tokiru.core.event.Event;
  * Created by tokiru.
  */
 public class Hero implements Creature {
+
+    private HeroClass heroClass;
+    private int health;
+    private BoardState boardState;
 
     public Hero(HeroClass heroClass) {
         this.heroClass = heroClass;
@@ -37,9 +41,6 @@ public class Hero implements Creature {
     public boolean canAttack(Creature target) {
         return false;
     }
-
-    private HeroClass heroClass;
-    private int health;
 
     @Override
     public int getHealth() {
@@ -78,6 +79,4 @@ public class Hero implements Creature {
     public String toString() {
         return getName() + " " + health;
     }
-
-    private BoardState boardState;
 }

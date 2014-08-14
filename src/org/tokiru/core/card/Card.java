@@ -1,5 +1,6 @@
 package org.tokiru.core.card;
 
+import org.tokiru.core.board.BoardState;
 import org.tokiru.core.card.creature.Creature;
 
 /**
@@ -10,11 +11,8 @@ public interface Card {
     void changeCost(int value);
     String getName();
     CardType getType();
-    void play(Creature target);
+    boolean canPlay(Creature target, BoardState boardState);
 
-    /**
-     * Created by tokiru.
-     */
     public enum CardType {
         MINION,
         SPELL,

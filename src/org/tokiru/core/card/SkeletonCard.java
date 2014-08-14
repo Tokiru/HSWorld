@@ -5,13 +5,17 @@ import org.tokiru.core.card.creature.Creature;
 /**
  * Created by tokiru.
  */
-public class SkeletonCard implements Card {
+public abstract class SkeletonCard implements Card {
+    protected int cost;
+    protected String name;
+    protected CardType type;
+
     public SkeletonCard() {
         this(1);
     }
 
     public SkeletonCard(int cost) {
-        this(cost, "Basic card");
+        this(cost, "card");
     }
 
     public SkeletonCard(int cost, String name) {
@@ -36,21 +40,7 @@ public class SkeletonCard implements Card {
     }
 
     @Override
-    public CardType getType() {
-        return type;
-    }
-
-    @Override
-    public void play(Creature target) {
-
-    }
-
-    @Override
     public String toString() {
-        return "card type = " + type.name() + " name = " + name + " cost = " + cost;
+        return "card type = " + getType().name() + " name = " + getName() + " cost = " + getCost();
     }
-
-    private int cost;
-    private String name;
-    private CardType type;
 }

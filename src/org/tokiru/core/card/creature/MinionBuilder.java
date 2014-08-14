@@ -1,11 +1,19 @@
 package org.tokiru.core.card.creature;
 
-import org.tokiru.core.player.SkeletonPlayer;
-
 /**
  * Created by tokiru.
  */
 public class MinionBuilder {
+    private int health = 1;
+    private int attack;
+    private int cost;
+    private boolean taunt;
+    private boolean divineShield;
+    private boolean charge;
+    private int spellDamage;
+    private boolean windFurry;
+    private String name;
+
     public MinionBuilder() {
 
     }
@@ -67,15 +75,5 @@ public class MinionBuilder {
         creature.windFurry = windFurry;
         return new MinionCard(cost, creature);
     }
-
-    private int health = 1;
-    private int attack;
-    private int cost;
-    private boolean taunt;
-    private boolean divineShield;
-    private boolean charge;
-    private int spellDamage;
-    private boolean windFurry;
-    private String name;
 
 }

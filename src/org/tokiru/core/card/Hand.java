@@ -8,6 +8,9 @@ import java.util.stream.Collectors;
  * Created by tokiru.
  */
 public class Hand {
+    private static final int MAX_SIZE = 10;
+    private List<Card> cards;
+
     public Hand() {
         cards = new ArrayList<>();
     }
@@ -39,7 +42,4 @@ public class Hand {
         }
         return sb.toString();
     }
-
-    private static final int MAX_SIZE = 10;
-    private List<Card> cards;
 }

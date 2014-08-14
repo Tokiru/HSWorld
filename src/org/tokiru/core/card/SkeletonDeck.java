@@ -2,6 +2,7 @@ package org.tokiru.core.card;
 
 import org.tokiru.core.card.creature.MinionBuilder;
 import org.tokiru.core.card.creature.MinionCard;
+import org.tokiru.core.card.spell.Flamestrike;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -11,16 +12,20 @@ import java.util.List;
  * Created by tokiru.
  */
 public class SkeletonDeck implements Deck {
+    private List<Card> cards;
+    private int cardCounter;
+    private List<Card> mulliganPhase1Cards;
+
     public SkeletonDeck() {
         cards = new ArrayList<>();
         cardCounter = 0;
 
         cards.add(new MinionBuilder().setAttack(2).setHealth(1).charge().setName("charger").getCard());
         cards.add(new MinionBuilder().setAttack(0).setHealth(10).taunt().setName("taunt").getCard());
-        cards.add(new MinionBuilder().setAttack(0).setHealth(10).taunt().setName("taunt").getCard());
+        cards.add(new Flamestrike());
 
         while (cards.size() < SIZE) {
-            cards.add(new MinionCard((int) (10*Math.random()), (int) (10*Math.random()), (int) (10*Math.random())));
+            cards.add(new MinionCard((int) (10 * Math.random()), (int) (10 * Math.random()), (int) (10 * Math.random())));
         }
     }
 
@@ -69,8 +74,4 @@ public class SkeletonDeck implements Deck {
         Collections.shuffle(cards);
         return mulliganPhase1Cards;
     }
-
-    private List<Card> cards;
-    private int cardCounter;
-    private List<Card> mulliganPhase1Cards;
 }

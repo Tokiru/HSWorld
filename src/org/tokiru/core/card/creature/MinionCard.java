@@ -1,11 +1,15 @@
 package org.tokiru.core.card.creature;
 
+import org.tokiru.core.board.BoardState;
 import org.tokiru.core.card.Card;
 
 /**
  * Created by tokiru.
  */
 public class MinionCard implements Card {
+    private int cost;
+    private Creature creature;
+
     public MinionCard(int cost, int health, int attack) {
         creature = new SkeletonCreature(health, attack);
         this.cost = cost;
@@ -19,6 +23,10 @@ public class MinionCard implements Card {
     public MinionCard(int cost, Creature creature) {
         this.creature = creature;
         this.cost = cost;
+    }
+
+    public static MinionCard Yeti() {
+        return new MinionBuilder().setAttack(4).setHealth(5).setCost(4).setName("Yeti").getCard();
     }
 
     @Override
@@ -42,23 +50,16 @@ public class MinionCard implements Card {
     }
 
     @Override
-    public void play(Creature target) {
-        assert target == null;
+    public boolean canPlay(Creature target, BoardState boardState) {
+        return target == null;
     }
 
     public Creature getCreature() {
         return creature;
     }
 
-    public static MinionCard Yeti() {
-        return new MinionBuilder().setAttack(4).setHealth(5).setCost(4).setName("Yeti").getCard();
-    }
-
     @Override
     public String toString() {
         return "card creature = " + creature.toString();
     }
-
-    private int cost;
-    private Creature creature;
 }

@@ -8,11 +8,11 @@ public abstract class Turn {
 
     }
 
+    public abstract TurnType getType();
+
     public enum TurnType {
         PLAY_CARD,
         ATTACK,
         END_TURN
     }
-
-    public abstract TurnType getType();
 }

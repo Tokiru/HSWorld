@@ -1,9 +1,12 @@
 package org.tokiru.core;
 
-import org.tokiru.core.Board.BoardState;
-import org.tokiru.core.card.*;
+import org.tokiru.core.board.BoardState;
+import org.tokiru.core.card.Card;
+import org.tokiru.core.card.Deck;
+import org.tokiru.core.card.Hand;
 import org.tokiru.core.card.creature.Creature;
 import org.tokiru.core.card.creature.MinionCard;
+import org.tokiru.core.card.spell.SpellCard;
 import org.tokiru.core.event.EndTurnEvent;
 import org.tokiru.core.player.Player;
 import org.tokiru.core.turn.AttackTurn;
@@ -18,6 +21,10 @@ import java.util.List;
  * Created by tokiru.
  */
 public class Game {
+    private List<Player> players;
+    private State state;
+    private BoardState boardState;
+
     public Game() {
         players = new ArrayList<>();
         state = State.PREPARATION;
@@ -92,8 +99,10 @@ public class Game {
                         Creature creature = minionCard.getCreature();
                         boardState.addCreature(creature, currentPlayerID);
                         creature.spawn(boardState);
-                    } else {
-                        throw new NotImplementedException();
+                    } else if (cardToPlay.getType() == Card.CardType.SPELL) {
+                        // ToDo use target
+                        SpellCard spellCard = (SpellCard) cardToPlay;
+                        spellCard.play(null, boardState, currentPlayerID, boardState.getSpellDamage(currentPlayerID));
                     }
                 }
 
@@ -103,11 +112,15 @@ public class Game {
             for (Creature creature : boardState.getAllCharacters()) {
                 creature.acceptEvent(new EndTurnEvent());
             }
-                      
+
             currentPlayerID = 1 - currentPlayerID;
         }
 
         state = State.OVER;
+    }
+
+    public BoardState getBoardState() {
+        return boardState;
     }
 
     private enum State {
@@ -115,13 +128,4 @@ public class Game {
         RUNNING,
         OVER
     }
-
-    public BoardState getBoardState() {
-        return boardState;
-    }
-
-    private List<Player> players;
-    private State state;
-
-    private BoardState boardState;
 }
