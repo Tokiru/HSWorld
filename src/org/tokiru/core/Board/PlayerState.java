@@ -103,13 +103,17 @@ public class PlayerState {
         sb.append("\n");
         sb.append("board\n");
         sb.append("{");
-        for (int i = 0; i < creatures.size(); i++) {
+        for (Creature creature : creatures) {
             sb.append("[");
-            sb.append(creatures.get(i).toString());
+            sb.append(creature.toString());
             sb.append("]");
-            sb.append("\n");
         }
+        sb.append("}");
 
         return sb.toString();
+    }
+
+    public void removeCreature(Creature creature) {
+        creatures.remove(creature);
     }
 }

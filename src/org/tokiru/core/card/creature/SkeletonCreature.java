@@ -33,9 +33,12 @@ public class SkeletonCreature implements Creature {
 
     @Override
     public void takeDamage(int damage) {
-        this.health -= damage;
-        if (health <= 0) {
-            die();
+        if (damage > 0) {
+            if (divineShield) {
+                divineShield = false;
+            } else {
+                this.health -= damage;
+            }
         }
     }
 
@@ -46,7 +49,7 @@ public class SkeletonCreature implements Creature {
 
     @Override
     public void die() {
-
+        System.out.println(toString() + " deathrattle");
     }
 
     @Override
@@ -57,6 +60,16 @@ public class SkeletonCreature implements Creature {
     @Override
     public boolean isAlive() {
         return health > 0;
+    }
+
+    @Override
+    public void hit(Creature creature) {
+        creature.takeDamage(attack);
+    }
+
+    @Override
+    public void acceptEvent() {
+
     }
 
     @Override

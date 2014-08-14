@@ -68,7 +68,18 @@ public class Game {
                 Turn.TurnType type = turn.getType();
                 if (type == Turn.TurnType.ATTACK) {
                     AttackTurn attackTurn = (AttackTurn) turn;
-                    System.out.println("attack turn from = " + attackTurn.getFromID() + " to = " + attackTurn.getToID());
+                    Creature attackCreature = boardState.getByID(attackTurn.getFromID());
+                    Creature defenseCreature = boardState.getByID(attackTurn.getToID());
+                    attackCreature.hit(defenseCreature);
+                    defenseCreature.hit(attackCreature);
+
+                    boolean attackHeroDead = removeCreature(attackCreature, currentPlayerID);
+                    boolean defenseHeroDead = removeCreature(defenseCreature, 1 - currentPlayerID);
+                    if (attackHeroDead || defenseHeroDead) {
+                        System.out.println("Game over");
+                        break;
+                    }
+
                 } else if (type == Turn.TurnType.PLAY_CARD) {
                     PlayCardTurn playCardTurn = (PlayCardTurn) turn;
                     Card cardToPlay = boardState.getHand(currentPlayerID).play(playCardTurn.getCardID());
@@ -81,6 +92,8 @@ public class Game {
                         throw new NotImplementedException();
                     }
                 }
+
+                System.out.println(boardState);
             }
             currentPlayerID = 1 - currentPlayerID;
         }
@@ -102,4 +115,17 @@ public class Game {
     private State state;
 
     private BoardState boardState;
+
+    private boolean removeCreature(Creature creature, int playerID) {
+        if (creature.isAlive()) {
+            return false;
+        }
+        creature.die();
+        if (creature == boardState.getHero(playerID)) {
+            return true;
+        } else {
+            boardState.removeCreature(creature);
+            return false;
+        }
+    }
 }

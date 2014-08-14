@@ -6,17 +6,17 @@ import org.tokiru.core.card.Card;
  * Created by tokiru.
  */
 public class MinionCard implements Card {
-    MinionCard(int cost, int health, int attack) {
+    public MinionCard(int cost, int health, int attack) {
         creature = new SkeletonCreature(health, attack);
         this.cost = cost;
     }
 
-    MinionCard(int cost, int health, int attack, String name) {
+    public MinionCard(int cost, int health, int attack, String name) {
         creature = new SkeletonCreature(health, attack, name);
         this.cost = cost;
     }
 
-    MinionCard(int cost, Creature creature) {
+    public MinionCard(int cost, Creature creature) {
         this.creature = creature;
         this.cost = cost;
     }
@@ -52,6 +52,11 @@ public class MinionCard implements Card {
 
     public static MinionCard Yeti() {
         return new MinionBuilder().setAttack(4).setHealth(5).setCost(4).setName("Yeti").getCard();
+    }
+
+    @Override
+    public String toString() {
+        return "card creature = " + creature.toString();
     }
 
     private int cost;

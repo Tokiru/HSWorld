@@ -11,4 +11,6 @@ public interface Creature {
     void die();
     String getName();
     boolean isAlive();
+    void hit(Creature creature);
+    void acceptEvent();
 }

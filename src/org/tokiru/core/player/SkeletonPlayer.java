@@ -18,6 +18,7 @@ import java.io.InputStreamReader;
 import java.nio.channels.Channels;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by tokiru.
@@ -44,41 +45,57 @@ public class SkeletonPlayer implements Player {
     }
     @Override
     public List<Boolean> mulligan(List<Card> cards) {
-        List<Boolean> result = new ArrayList<>();
-        for (Card card : cards) {
-            result.add(true);
-        }
+        List<Boolean> result = cards.stream().map(card -> true).collect(Collectors.toList());
         return result;
     }
 
     @Override
     public Turn turn(BoardState state) {
         System.out.print("turn pls: ");
+//        try {
+//            int turnType = System.in.read();
+//            Turn result = null;
+//            switch (turnType) {
+//                case '1':
+//                    int a = System.in.read() - '1';
+//                    int b = System.in.read() - '1';
+//                    result = new AttackTurn(a, b);
+//                    break;
+//
+//                case '2':
+//                    System.in.read();
+//                    a = System.in.read() - '1';
+//                    System.in.read();
+//                    b = System.in.read() - '1';
+//                    result = new PlayCardTurn(a, b);
+//                    break;
+//            }
+//
+//            if (result != null) {
+//                return result;
+//            } else {
+//                return new EndTurn();
+//            }
+//        } catch (IOException e) {
+//            return new EndTurn();
+//        }
+
         try {
-            int turnType = System.in.read();
-            Turn result = null;
-            switch (turnType) {
-                case '1':
-                    int a = System.in.read() - '1';
-                    int b = System.in.read() - '1';
-                    result = new AttackTurn(a, b);
-                    break;
+            String s = reader.readLine();
+            String[] parts = s.split(" ");
+            int type = new Integer(parts[0]);
+            int a = new Integer(parts[1]);
+            int b = new Integer(parts[2]);
 
-                case '2':
-                    System.in.read();
-                    a = System.in.read() - '1';
-                    System.in.read();
-                    b = System.in.read() - '1';
-                    result = new PlayCardTurn(a, b);
-                    break;
-            }
-
-            if (result != null) {
-                return result;
+            if (type == 1) {
+                return new PlayCardTurn(a, b);
+            } else if (type == 2) {
+                return new AttackTurn(a, b);
             } else {
                 return new EndTurn();
             }
         } catch (IOException e) {
+            e.printStackTrace();
             return new EndTurn();
         }
     }

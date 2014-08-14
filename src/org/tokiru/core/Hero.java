@@ -16,6 +16,16 @@ public class Hero implements Creature {
         return health > 0;
     }
 
+    @Override
+    public void hit(Creature creature) {
+
+    }
+
+    @Override
+    public void acceptEvent() {
+
+    }
+
     private HeroClass heroClass;
     private int health;
 

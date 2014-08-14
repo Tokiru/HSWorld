@@ -17,6 +17,8 @@ public class BoardState {
         for (int i = 0; i < 2;  i++) {
             playerStates.add(new PlayerState());
         }
+
+        turnCount = 0;
     }
 
     public void setHero(Hero hero, int playerID) {
@@ -48,6 +50,23 @@ public class BoardState {
         playerStates.get(playerID).addCreature(creature);
     }
 
+    public void removeCreature(Creature creature) {
+        int id1 = playerStates.get(0).getID(creature);
+        int id2 = playerStates.get(1).getID(creature);
+        assert id1 == -1 ^ id2 == -1;
+        if (id1 == -1) {
+            playerStates.get(1).removeCreature(creature);
+        } else {
+            playerStates.get(0).removeCreature(creature);
+        }
+    }
+
+    public void removeCreature(int creatureID) {
+        for (PlayerState playerState : playerStates) {
+            playerState.removeCreature(playerState.getByID(creatureID));
+        }
+    }
+
     public void dealFartigueDamage(int playerID) {
         playerStates.get(playerID).dealFartigueDamage();
     }
@@ -64,8 +83,8 @@ public class BoardState {
     }
 
     public boolean gameOver() {
-        for (int i = 0;  i < playerStates.size(); i++) {
-            if (!playerStates.get(i).isAlive()) {
+        for (PlayerState playerState : playerStates) {
+            if (!playerState.isAlive()) {
                 return true;
             }
         }
@@ -92,14 +111,20 @@ public class BoardState {
         }
     }
 
+    public void endTurn() {
+        turnCount++;
+    }
+
+    public int getTurnCount() {
+        return turnCount;
+    }
+
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder("Board state\n");
-        sb.append(playerStates.get(0).toString());
-        sb.append(playerStates.get(1).toString());
-        return sb.toString();
+        return "Board state\n" + playerStates.get(0).toString() + playerStates.get(1).toString();
     }
 
     private List<PlayerState> playerStates;
     private int MAGIC = 1000;
+    private int turnCount;
 }
