@@ -109,7 +109,7 @@ public class Game {
                             MinionCard minionCard = (MinionCard) cardToPlay;
                             Creature creature = minionCard.getCreature();
                             boardState.addCreature(creature, currentPlayerID);
-                            creature.spawn(boardState);
+                            creature.spawn(boardState, eventManager);
                         } else if (cardToPlay.getType() == Card.CardType.SPELL) {
                             // ToDo use target
                             SpellCard spellCard = (SpellCard) cardToPlay;
@@ -124,9 +124,7 @@ public class Game {
                 }
             }
 
-            for (Creature creature : boardState.getAllCharacters()) {
-                creature.acceptEvent(new EndTurnEvent());
-            }
+            eventManager.send(new EndTurnEvent());
 
             currentPlayerID = 1 - currentPlayerID;
         }

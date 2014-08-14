@@ -2,6 +2,7 @@ package org.tokiru.core.card.creature;
 
 import org.tokiru.core.board.BoardState;
 import org.tokiru.core.event.Event;
+import org.tokiru.core.event.EventManager;
 
 /**
  * Created by tokiru.
@@ -13,7 +14,7 @@ public interface Creature {
 
     void takeDamage(int damage);
 
-    void spawn(BoardState boardState);
+    void spawn(BoardState boardState, EventManager eventManager);
 
     void die();
 
@@ -22,8 +23,6 @@ public interface Creature {
     boolean isAlive();
 
     void hit(Creature creature);
-
-    void acceptEvent(Event event);
 
     public boolean isTaunt();
 
