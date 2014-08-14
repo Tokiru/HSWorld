@@ -34,4 +34,15 @@ public interface Creature {
     void destroy();
 
     Player getOwner();
+
+    Race getRace();
+
+    enum Race {
+        NONE,
+        BEAST,
+        DRAGON,
+        MURLOC,
+        PIRATE,
+        DEMON
+    }
 }
