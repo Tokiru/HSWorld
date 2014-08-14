@@ -25,11 +25,13 @@ public class SkeletonCreature implements Creature, Subscriber {
     protected BoardState boardState;
     protected EventManager eventManager;
     protected Player owner;
+    protected Race race;
 
     public SkeletonCreature(int health, int attack, String name) {
         this.health = health;
         this.attack = attack;
         this.name = name;
+        this.race = Race.NONE;
 
         firstTurn = true;
         maxNumberOfAttacks = 1;
@@ -145,6 +147,11 @@ public class SkeletonCreature implements Creature, Subscriber {
     @Override
     public Player getOwner() {
         return owner;
+    }
+
+    @Override
+    public Race getRace() {
+        return race;
     }
 
     @Override

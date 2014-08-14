@@ -13,6 +13,7 @@ public class MinionBuilder {
     private int spellDamage;
     private boolean windFurry;
     private String name;
+    private Creature.Race race;
 
     public MinionBuilder() {
 
@@ -63,6 +64,11 @@ public class MinionBuilder {
         return this;
     }
 
+    public MinionBuilder race(Creature.Race race) {
+        this.race = race;
+        return this;
+    }
+
     public MinionCard getCard() {
         SkeletonCreature creature = new SkeletonCreature();
         creature.name = name;
@@ -73,6 +79,7 @@ public class MinionBuilder {
         creature.charge = charge;
         creature.spellDamage = spellDamage;
         creature.windFurry = windFurry;
+        creature.race = race;
         return new MinionCard(cost, creature);
     }
 
