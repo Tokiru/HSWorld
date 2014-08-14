@@ -8,6 +8,7 @@ public interface Event {
 
     public enum EventType {
         END_TURN,
-        SUMMON_MINION
+        SUMMON_MINION,
+        CHARACTER_HEAL
     }
 }
