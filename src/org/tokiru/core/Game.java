@@ -46,6 +46,8 @@ public class Game {
     }
 
     public void begin() {
+        assert state == State.RUNNING;
+
         int currentPlayerID = 0;
         while (!boardState.gameOver()) {
             System.out.println(currentPlayerID + " turn!");
@@ -73,10 +75,7 @@ public class Game {
                     attackCreature.hit(defenseCreature);
                     defenseCreature.hit(attackCreature);
 
-                    boolean attackHeroDead = removeCreature(attackCreature, currentPlayerID);
-                    boolean defenseHeroDead = removeCreature(defenseCreature, 1 - currentPlayerID);
-                    if (attackHeroDead || defenseHeroDead) {
-                        System.out.println("Game over");
+                    if (boardState.gameOver()) {
                         break;
                     }
 
@@ -87,7 +86,7 @@ public class Game {
                         MinionCard minionCard = (MinionCard) cardToPlay;
                         Creature creature = minionCard.getCreature();
                         boardState.addCreature(creature, currentPlayerID);
-                        creature.spawn();
+                        creature.spawn(boardState);
                     } else {
                         throw new NotImplementedException();
                     }
@@ -115,17 +114,4 @@ public class Game {
     private State state;
 
     private BoardState boardState;
-
-    private boolean removeCreature(Creature creature, int playerID) {
-        if (creature.isAlive()) {
-            return false;
-        }
-        creature.die();
-        if (creature == boardState.getHero(playerID)) {
-            return true;
-        } else {
-            boardState.removeCreature(creature);
-            return false;
-        }
-    }
 }

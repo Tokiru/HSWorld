@@ -1,5 +1,6 @@
 package org.tokiru.core;
 
+import org.tokiru.core.Board.BoardState;
 import org.tokiru.core.card.creature.Creature;
 
 /**
@@ -42,11 +43,14 @@ public class Hero implements Creature {
     @Override
     public void takeDamage(int damage) {
         health -= damage;
+        if (health <= 0) {
+            die();
+        }
     }
 
     @Override
-    public void spawn() {
-
+    public void spawn(BoardState boardState) {
+        this.boardState = boardState;
     }
 
     @Override
@@ -63,4 +67,6 @@ public class Hero implements Creature {
     public String toString() {
         return getName() + " " + health;
     }
+
+    private BoardState boardState;
 }
