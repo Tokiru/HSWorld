@@ -15,6 +15,8 @@ public interface Creature {
 
     void takeDamage(int damage);
 
+    void takeHeal(int heal);
+
     void spawn(Player owner, BoardState boardState, EventManager eventManager);
 
     void die();

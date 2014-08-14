@@ -14,14 +14,17 @@ public class SkeletonCreature implements Creature, Subscriber {
     protected String name;
     protected int health;
     protected int attack;
-    boolean taunt;
-    boolean divineShield;
-    boolean charge;
-    int spellDamage;
-    boolean windFurry;
+    protected boolean taunt;
+    protected boolean divineShield;
+    protected boolean charge;
+    protected int spellDamage;
+    protected boolean windFurry;
+
     private int numberOfAttacksThisTurn;
     private int maxNumberOfAttacks;
     private boolean firstTurn;
+    private int maxHealth;
+
     protected BoardState boardState;
     protected EventManager eventManager;
     protected Player owner;
@@ -29,6 +32,7 @@ public class SkeletonCreature implements Creature, Subscriber {
 
     public SkeletonCreature(int health, int attack, String name) {
         this.health = health;
+        this.maxHealth = health;
         this.attack = attack;
         this.name = name;
         this.race = Race.NONE;
@@ -72,6 +76,11 @@ public class SkeletonCreature implements Creature, Subscriber {
             die();
             boardState.removeCreature(this);
         }
+    }
+
+    @Override
+    public void takeHeal(int heal) {
+        this.health = Math.min(health + heal, maxHealth);
     }
 
     @Override
