@@ -77,6 +77,16 @@ public class PlayerState {
         return -1;
     }
 
+    public List<Creature> getMinions() {
+        return creatures;
+    }
+
+    public List<Creature> getCharacters(){
+        List<Creature> result = getMinions();
+        result.add(hero);
+        return result;
+    }
+
     public void dealFartigueDamage() {
         hero.takeDamage(++fartigue);
     }

@@ -119,6 +119,26 @@ public class BoardState {
         return turnCount;
     }
 
+    public List<Creature> getFriendlyCharacters(int playerID) {
+        return playerStates.get(playerID).getCharacters();
+    }
+
+    public List<Creature> getFriendlyMinions(int playerID) {
+        return playerStates.get(playerID).getMinions();
+    }
+
+    public List<Creature> getAllMinions() {
+        List<Creature> result = getFriendlyMinions(0);
+        result.addAll(getFriendlyMinions(1));
+        return result;
+    }
+
+    public List<Creature> getAllCharacters() {
+        List<Creature> result = getFriendlyCharacters(0);
+        result.addAll(getFriendlyCharacters(1));
+        return result;
+    }
+
     @Override
     public String toString() {
         return "Board state\n" + playerStates.get(0).toString() + playerStates.get(1).toString();
