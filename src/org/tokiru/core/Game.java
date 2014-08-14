@@ -4,6 +4,7 @@ import org.tokiru.core.Board.BoardState;
 import org.tokiru.core.card.*;
 import org.tokiru.core.card.creature.Creature;
 import org.tokiru.core.card.creature.MinionCard;
+import org.tokiru.core.event.EndTurnEvent;
 import org.tokiru.core.player.Player;
 import org.tokiru.core.turn.AttackTurn;
 import org.tokiru.core.turn.PlayCardTurn;
@@ -72,8 +73,12 @@ public class Game {
                     AttackTurn attackTurn = (AttackTurn) turn;
                     Creature attackCreature = boardState.getByID(attackTurn.getFromID());
                     Creature defenseCreature = boardState.getByID(attackTurn.getToID());
-                    attackCreature.hit(defenseCreature);
-                    defenseCreature.hit(attackCreature);
+                    if (attackCreature.canAttack(defenseCreature)) {
+                        attackCreature.hit(defenseCreature);
+                        defenseCreature.hit(attackCreature);
+                    } else {
+                        System.out.println("minion can not attack!");
+                    }
 
                     if (boardState.gameOver()) {
                         break;
@@ -93,6 +98,10 @@ public class Game {
                 }
 
                 System.out.println(boardState);
+            }
+
+            for (Creature creature : boardState.getAllCharacters()) {
+                creature.acceptEvent(new EndTurnEvent());
             }
             currentPlayerID = 1 - currentPlayerID;
         }

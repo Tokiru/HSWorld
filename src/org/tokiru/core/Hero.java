@@ -2,6 +2,7 @@ package org.tokiru.core;
 
 import org.tokiru.core.Board.BoardState;
 import org.tokiru.core.card.creature.Creature;
+import org.tokiru.core.event.Event;
 
 /**
  * Created by tokiru.
@@ -23,8 +24,18 @@ public class Hero implements Creature {
     }
 
     @Override
-    public void acceptEvent() {
+    public void acceptEvent(Event event) {
 
+    }
+
+    @Override
+    public boolean isTaunt() {
+        return false;
+    }
+
+    @Override
+    public boolean canAttack(Creature target) {
+        return false;
     }
 
     private HeroClass heroClass;

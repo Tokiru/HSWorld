@@ -1,5 +1,6 @@
 package org.tokiru.core.card;
 
+import org.tokiru.core.card.creature.MinionBuilder;
 import org.tokiru.core.card.creature.MinionCard;
 
 import java.util.ArrayList;
@@ -13,7 +14,10 @@ public class SkeletonDeck implements Deck {
     public SkeletonDeck() {
         cards = new ArrayList<>();
         cardCounter = 0;
-        for (int i = 0; i < SIZE; i++) {
+
+        cards.add(new MinionBuilder().setAttack(2).setHealth(1).charge().getCard());
+
+        while (cards.size() < SIZE) {
             cards.add(new MinionCard((int) (10*Math.random()), (int) (10*Math.random()), (int) (10*Math.random())));
         }
     }

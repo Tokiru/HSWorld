@@ -1,7 +1,7 @@
 package org.tokiru.core.card.creature;
 
 import org.tokiru.core.Board.BoardState;
-import org.tokiru.core.card.creature.Creature;
+import org.tokiru.core.event.Event;
 
 /**
  * Created by tokiru.
@@ -12,6 +12,12 @@ public class SkeletonCreature implements Creature {
         this.health = health;
         this.attack = attack;
         this.name = name;
+
+        firstTurn = true;
+        maxNumberOfAttacks = 1;
+        if (windFurry) {
+            maxNumberOfAttacks++;
+        }
     }
 
     public SkeletonCreature(int health, int attack) {
@@ -71,11 +77,29 @@ public class SkeletonCreature implements Creature {
     @Override
     public void hit(Creature creature) {
         creature.takeDamage(attack);
+        numberOfAttacksThisTurn++;
     }
 
     @Override
-    public void acceptEvent() {
+    public void acceptEvent(Event event) {
+        if (event.getType() == Event.EventType.END_TURN) {
+            numberOfAttacksThisTurn = 0;
+            firstTurn = false;
+        }
+    }
 
+    @Override
+    public boolean isTaunt() {
+        return taunt;
+    }
+
+    @Override
+    public boolean canAttack(Creature target) {
+        if (firstTurn && !charge) {
+            return false;
+        } else {
+            return numberOfAttacksThisTurn < maxNumberOfAttacks;
+        }
     }
 
     @Override
@@ -86,12 +110,16 @@ public class SkeletonCreature implements Creature {
     String name;
     int health;
     int attack;
-    int cost;
     boolean taunt;
     boolean divineShield;
     boolean charge;
     int spellDamage;
     boolean windFurry;
+
+
+    int numberOfAttacksThisTurn;
+    int maxNumberOfAttacks;
+    boolean firstTurn;
 
     private BoardState boardState;
 }
