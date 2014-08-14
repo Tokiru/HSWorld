@@ -20,6 +20,9 @@ public interface Player {
 
     Turn turn(BoardState state);
 
-
     String getName();
+
+    void setID(int id);
+
+    int getID();
 }

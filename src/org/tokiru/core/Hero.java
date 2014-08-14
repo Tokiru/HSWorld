@@ -5,6 +5,7 @@ import org.tokiru.core.card.creature.Creature;
 import org.tokiru.core.event.Event;
 import org.tokiru.core.event.EventManager;
 import org.tokiru.core.event.Subscriber;
+import org.tokiru.core.player.Player;
 
 /**
  * Created by tokiru.
@@ -15,6 +16,7 @@ public class Hero implements Creature, Subscriber {
     private int health;
     private BoardState boardState;
     private EventManager eventManager;
+    private Player owner;
 
     public Hero(HeroClass heroClass) {
         this.heroClass = heroClass;
@@ -52,6 +54,11 @@ public class Hero implements Creature, Subscriber {
     }
 
     @Override
+    public Player getOwner() {
+        return owner;
+    }
+
+    @Override
     public int getHealth() {
         return health;
     }
@@ -70,9 +77,10 @@ public class Hero implements Creature, Subscriber {
     }
 
     @Override
-    public void spawn(BoardState boardState, EventManager eventManager) {
+    public void spawn(Player owner, BoardState boardState, EventManager eventManager) {
         this.boardState = boardState;
         this.eventManager = eventManager;
+        this.owner = owner;
     }
 
     @Override

@@ -4,15 +4,16 @@ import org.tokiru.core.board.BoardState;
 import org.tokiru.core.event.Event;
 import org.tokiru.core.event.EventManager;
 import org.tokiru.core.event.Subscriber;
+import org.tokiru.core.player.Player;
 
 /**
  * Created by tokiru.
  */
 public class SkeletonCreature implements Creature, Subscriber {
 
-    String name;
-    int health;
-    int attack;
+    protected String name;
+    protected int health;
+    protected int attack;
     boolean taunt;
     boolean divineShield;
     boolean charge;
@@ -21,8 +22,9 @@ public class SkeletonCreature implements Creature, Subscriber {
     private int numberOfAttacksThisTurn;
     private int maxNumberOfAttacks;
     private boolean firstTurn;
-    private BoardState boardState;
-    private EventManager eventManager;
+    protected BoardState boardState;
+    protected EventManager eventManager;
+    protected Player owner;
 
     public SkeletonCreature(int health, int attack, String name) {
         this.health = health;
@@ -71,9 +73,10 @@ public class SkeletonCreature implements Creature, Subscriber {
     }
 
     @Override
-    public void spawn(BoardState boardState, EventManager eventManager) {
+    public void spawn(Player owner, BoardState boardState, EventManager eventManager) {
         this.boardState = boardState;
         this.eventManager = eventManager;
+        this.owner = owner;
         eventManager.subscribe(this, Event.EventType.END_TURN);
     }
 
@@ -137,6 +140,11 @@ public class SkeletonCreature implements Creature, Subscriber {
     public void destroy() {
         this.health = 0;
         die();
+    }
+
+    @Override
+    public Player getOwner() {
+        return owner;
     }
 
     @Override

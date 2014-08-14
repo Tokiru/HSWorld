@@ -7,6 +7,7 @@ public interface Event {
     public EventType getType();
 
     public enum EventType {
-        END_TURN
+        END_TURN,
+        SUMMON_MINION
     }
 }

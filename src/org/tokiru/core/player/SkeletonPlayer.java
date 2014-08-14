@@ -22,6 +22,7 @@ public class SkeletonPlayer implements Player {
     private final Hero hero;
     private final Deck deck;
     private String name;
+    private int id;
 
     public SkeletonPlayer() {
         this("Unnamed");
@@ -78,5 +79,15 @@ public class SkeletonPlayer implements Player {
     @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public void setID(int id) {
+        this.id = id;
+    }
+
+    @Override
+    public int getID() {
+        return id;
     }
 }

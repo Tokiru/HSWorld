@@ -10,6 +10,7 @@ import org.tokiru.core.card.spell.SpellCard;
 import org.tokiru.core.card.spell.neutral.Coin;
 import org.tokiru.core.event.EndTurnEvent;
 import org.tokiru.core.event.EventManager;
+import org.tokiru.core.event.SummonMinionEvent;
 import org.tokiru.core.player.Player;
 import org.tokiru.core.turn.AttackTurn;
 import org.tokiru.core.turn.PlayCardTurn;
@@ -41,6 +42,9 @@ public class Game {
     }
 
     public void setUp() {
+        players.get(0).setID(0);
+        players.get(1).setID(1);
+
         assert state == State.PREPARATION;
         assert players.size() == 2;
         state = State.RUNNING;
@@ -109,7 +113,8 @@ public class Game {
                             MinionCard minionCard = (MinionCard) cardToPlay;
                             Creature creature = minionCard.getCreature();
                             boardState.addCreature(creature, currentPlayerID);
-                            creature.spawn(boardState, eventManager);
+                            creature.spawn(players.get(currentPlayerID), boardState, eventManager);
+                            eventManager.send(new SummonMinionEvent(creature));
                         } else if (cardToPlay.getType() == Card.CardType.SPELL) {
                             // ToDo use target
                             SpellCard spellCard = (SpellCard) cardToPlay;
