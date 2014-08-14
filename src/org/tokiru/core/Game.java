@@ -70,10 +70,12 @@ public class Game {
 
             // add mana crystal
             boardState.addManaCrystal(currentPlayerID);
-
+            boardState.refreshMana(currentPlayerID);
 
             Turn turn = new AttackTurn(-1, -1);
             while (turn.getType() != Turn.TurnType.END_TURN) {
+                System.out.println(boardState);
+
                 turn = players.get(currentPlayerID).turn(boardState);
                 Turn.TurnType type = turn.getType();
                 if (type == Turn.TurnType.ATTACK) {
@@ -84,7 +86,7 @@ public class Game {
                         attackCreature.hit(defenseCreature);
                         defenseCreature.hit(attackCreature);
                     } else {
-                        System.out.println("minion can not attack!");
+                        System.out.println("minion can't attack!");
                     }
 
                     if (boardState.gameOver()) {
@@ -94,19 +96,21 @@ public class Game {
                 } else if (type == Turn.TurnType.PLAY_CARD) {
                     PlayCardTurn playCardTurn = (PlayCardTurn) turn;
                     Card cardToPlay = boardState.getHand(currentPlayerID).play(playCardTurn.getCardID());
-                    if (cardToPlay.getType() == Card.CardType.MINION) {
-                        MinionCard minionCard = (MinionCard) cardToPlay;
-                        Creature creature = minionCard.getCreature();
-                        boardState.addCreature(creature, currentPlayerID);
-                        creature.spawn(boardState);
-                    } else if (cardToPlay.getType() == Card.CardType.SPELL) {
-                        // ToDo use target
-                        SpellCard spellCard = (SpellCard) cardToPlay;
-                        spellCard.play(null, boardState, currentPlayerID, boardState.getSpellDamage(currentPlayerID));
+                    if (boardState.wasteMana(cardToPlay.getCost(), currentPlayerID)) {
+                        if (cardToPlay.getType() == Card.CardType.MINION) {
+                            MinionCard minionCard = (MinionCard) cardToPlay;
+                            Creature creature = minionCard.getCreature();
+                            boardState.addCreature(creature, currentPlayerID);
+                            creature.spawn(boardState);
+                        } else if (cardToPlay.getType() == Card.CardType.SPELL) {
+                            // ToDo use target
+                            SpellCard spellCard = (SpellCard) cardToPlay;
+                            spellCard.play(null, boardState, currentPlayerID, boardState.getSpellDamage(currentPlayerID));
+                        }
+                    } else {
+                        System.out.println("not enough mana");
                     }
                 }
-
-                System.out.println(boardState);
             }
 
             for (Creature creature : boardState.getAllCharacters()) {

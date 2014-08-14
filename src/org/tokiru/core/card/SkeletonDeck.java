@@ -20,8 +20,8 @@ public class SkeletonDeck implements Deck {
         cards = new ArrayList<>();
         cardCounter = 0;
 
-        cards.add(new MinionBuilder().setAttack(2).setHealth(1).charge().setName("charger").getCard());
-        cards.add(new MinionBuilder().setAttack(0).setHealth(10).taunt().setName("taunt").getCard());
+        cards.add(new MinionBuilder().setAttack(2).setHealth(1).charge().setName("charger").setCost(2).getCard());
+        cards.add(new MinionBuilder().setAttack(0).setHealth(10).taunt().setName("taunt").setCost(3).getCard());
         cards.add(new Flamestrike());
 
         while (cards.size() < SIZE) {

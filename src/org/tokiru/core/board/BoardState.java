@@ -94,6 +94,14 @@ public class BoardState {
         return playerStates.get(playerID).getSpellDamage();
     }
 
+    public void refreshMana(int playerID) {
+        playerStates.get(playerID).refreshMana();
+    }
+
+    public boolean wasteMana(int count, int playerID) {
+        return playerStates.get(playerID).wasteMana(count);
+    }
+
     public boolean gameOver() {
         for (PlayerState playerState : playerStates) {
             if (!playerState.isAlive()) {

@@ -43,6 +43,11 @@ public class Hero implements Creature {
     }
 
     @Override
+    public int getSpellDamage() {
+        return 0;
+    }
+
+    @Override
     public int getHealth() {
         return health;
     }

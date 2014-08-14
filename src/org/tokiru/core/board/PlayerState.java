@@ -19,6 +19,7 @@ public class PlayerState {
     private List<Creature> creatures;
     private int fartigue;
     private int manaCrystals;
+    private int currentMana;
 
     public PlayerState() {
         creatures = new ArrayList<>();
@@ -83,6 +84,19 @@ public class PlayerState {
         return -1;
     }
 
+    public void refreshMana() {
+        currentMana = manaCrystals;
+    }
+
+    public boolean wasteMana(int count) {
+        if (currentMana >= count) {
+            currentMana -= count;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public List<Creature> getMinions() {
         List<Creature> result = new ArrayList<>(creatures);
         return result;
@@ -103,7 +117,9 @@ public class PlayerState {
     }
 
     public void addManaCrystal(int value) {
-        manaCrystals += value;
+        if (manaCrystals < 10) {
+            manaCrystals += value;
+        }
     }
 
     @Override
@@ -123,6 +139,8 @@ public class PlayerState {
         sb.append("hand\n");
         sb.append(hand);
         sb.append("\n");
+
+        sb.append("Mana max = " + manaCrystals + " current = " + currentMana + "\n");
 
         return sb.toString();
     }

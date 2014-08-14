@@ -60,6 +60,6 @@ public class MinionCard implements Card {
 
     @Override
     public String toString() {
-        return "card creature = " + creature.toString();
+        return "card cost = " + getCost() + " creature = [" + creature.toString() + "]";
     }
 }
