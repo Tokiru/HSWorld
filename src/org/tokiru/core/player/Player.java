@@ -1,0 +1,22 @@
+package org.tokiru.core.player;
+
+import org.tokiru.core.Board.BoardState;
+import org.tokiru.core.Hero;
+import org.tokiru.core.card.Card;
+import org.tokiru.core.card.Deck;
+import org.tokiru.core.turn.Turn;
+
+import java.util.List;
+
+/**
+ * Created by tokiru.
+ */
+public interface Player {
+    Hero getHero();
+    Deck getDeck();
+    List<Boolean> mulligan(List<Card> cards);
+    Turn turn(BoardState state);
+
+
+    String getName();
+}
