@@ -2,7 +2,7 @@ package org.tokiru.core.card;
 
 import org.tokiru.core.card.creature.MinionBuilder;
 import org.tokiru.core.card.creature.MinionCard;
-import org.tokiru.core.card.spell.Flamestrike;
+import org.tokiru.core.card.spell.mage.Flamestrike;
 
 import java.util.ArrayList;
 import java.util.Collections;

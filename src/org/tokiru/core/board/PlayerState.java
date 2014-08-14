@@ -88,7 +88,14 @@ public class PlayerState {
         currentMana = manaCrystals;
     }
 
-    public boolean wasteMana(int count) {
+    public void addMana(int count) {
+        currentMana += count;
+        if (currentMana > 10) {
+            currentMana = 10;
+        }
+    }
+
+    public boolean spendMana(int count) {
         if (currentMana >= count) {
             currentMana -= count;
             return true;

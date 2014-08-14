@@ -98,8 +98,12 @@ public class BoardState {
         playerStates.get(playerID).refreshMana();
     }
 
-    public boolean wasteMana(int count, int playerID) {
-        return playerStates.get(playerID).wasteMana(count);
+    public boolean spendMana(int count, int playerID) {
+        return playerStates.get(playerID).spendMana(count);
+    }
+
+    public void addMana(int count, int playerID) {
+        playerStates.get(playerID).addMana(count);
     }
 
     public boolean gameOver() {

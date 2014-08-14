@@ -7,12 +7,12 @@ import org.tokiru.core.card.Hand;
 import org.tokiru.core.card.creature.Creature;
 import org.tokiru.core.card.creature.MinionCard;
 import org.tokiru.core.card.spell.SpellCard;
+import org.tokiru.core.card.spell.neutral.Coin;
 import org.tokiru.core.event.EndTurnEvent;
 import org.tokiru.core.player.Player;
 import org.tokiru.core.turn.AttackTurn;
 import org.tokiru.core.turn.PlayCardTurn;
 import org.tokiru.core.turn.Turn;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,13 +44,17 @@ public class Game {
         for (int playerID = 0; playerID < players.size(); playerID++) {
             boardState.setHero(players.get(playerID).getHero(), playerID);
             boardState.setDeck(players.get(playerID).getDeck(), playerID);
-            //mulligan
+        }
+
+        //mulligan
+        for (int playerID = 0; playerID < players.size(); playerID++) {
             Deck deck = boardState.getDeck(playerID);
             List<Card> mulliganCards = deck.mulliganPhase1(playerID + 3);
             List<Boolean> acceptedCards = players.get(playerID).mulligan(mulliganCards);
             List<Card> handList = deck.mulliganPhase2(acceptedCards);
             boardState.setHand(new Hand(handList), playerID);
         }
+        boardState.getHand(1).accept(new Coin());
     }
 
     public void begin() {
@@ -96,7 +100,7 @@ public class Game {
                 } else if (type == Turn.TurnType.PLAY_CARD) {
                     PlayCardTurn playCardTurn = (PlayCardTurn) turn;
                     Card cardToPlay = boardState.getHand(currentPlayerID).play(playCardTurn.getCardID());
-                    if (boardState.wasteMana(cardToPlay.getCost(), currentPlayerID)) {
+                    if (boardState.spendMana(cardToPlay.getCost(), currentPlayerID)) {
                         if (cardToPlay.getType() == Card.CardType.MINION) {
                             MinionCard minionCard = (MinionCard) cardToPlay;
                             Creature creature = minionCard.getCreature();
