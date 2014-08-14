@@ -83,6 +83,7 @@ public class SkeletonCreature implements Creature, Subscriber {
     @Override
     public void die() {
         System.out.println(toString() + " deathrattle");
+        eventManager.unsubscribe(this);
     }
 
     @Override
