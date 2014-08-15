@@ -1,7 +1,6 @@
 package org.tokiru.core.card.creature;
 
 import org.tokiru.core.board.BoardState;
-import org.tokiru.core.event.Event;
 import org.tokiru.core.event.EventManager;
 import org.tokiru.core.player.Player;
 

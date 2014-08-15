@@ -8,6 +8,7 @@ import org.tokiru.core.card.creature.Creature;
 import org.tokiru.core.card.creature.MinionCard;
 import org.tokiru.core.card.spell.SpellCard;
 import org.tokiru.core.card.spell.neutral.Coin;
+import org.tokiru.core.card.spell.weapon.WeaponCard;
 import org.tokiru.core.event.EndTurnEvent;
 import org.tokiru.core.event.EventManager;
 import org.tokiru.core.event.SummonMinionEvent;
@@ -51,6 +52,7 @@ public class Game {
         boardState = new BoardState();
         for (int playerID = 0; playerID < players.size(); playerID++) {
             boardState.setHero(players.get(playerID).getHero(), playerID);
+            players.get(playerID).getHero().spawn(players.get(playerID), boardState, eventManager);
             boardState.setDeck(players.get(playerID).getDeck(), playerID);
         }
 
@@ -96,7 +98,11 @@ public class Game {
                     Creature defenseCreature = boardState.getByID(attackTurn.getToID());
                     if (attackCreature.canAttack(defenseCreature)) {
                         attackCreature.hit(defenseCreature);
-                        defenseCreature.hit(attackCreature);
+                        if (attackCreature instanceof Hero) {
+                            // do nothing
+                        } else {
+                            defenseCreature.hit(attackCreature);
+                        }
                     } else {
                         System.out.println("minion can't attack!");
                     }
@@ -119,6 +125,9 @@ public class Game {
                             // ToDo use target
                             SpellCard spellCard = (SpellCard) cardToPlay;
                             spellCard.play(null, boardState, currentPlayerID, boardState.getSpellDamage(currentPlayerID));
+                        } else if (cardToPlay.getType() == Card.CardType.WEAPON) {
+                            WeaponCard weaponCard = (WeaponCard) cardToPlay;
+                            weaponCard.play(boardState.getHero(currentPlayerID), boardState);
                         }
                     } else {
                         System.out.println("not enough mana");
