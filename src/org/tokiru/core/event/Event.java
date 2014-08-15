@@ -11,6 +11,8 @@ public interface Event {
         SUMMON_MINION,
         CHARACTER_HEAL,
         WEAPON_DESTROY,
-        SECRET_REVEALED
+        SECRET_REVEALED,
+
+        BUFF_DISCONNECT
     }
 }
