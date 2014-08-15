@@ -17,7 +17,10 @@ public class TargetCreature extends SkeletonCreature implements Creature {
     }
 
     public TargetCreature(int health, int attack, String name) {
-        super(health, attack, name);
+        this(health, attack, name, 0, false);
+    }
+    public TargetCreature(int health, int attack, String name, int cost) {
+        this(health, attack, name, cost, false);
     }
 
     @Override
