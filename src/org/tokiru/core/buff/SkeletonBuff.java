@@ -2,7 +2,6 @@ package org.tokiru.core.buff;
 
 import org.tokiru.core.board.BoardState;
 import org.tokiru.core.creature.Creature;
-import org.tokiru.core.event.Event;
 
 /**
  * Created by tokiru.

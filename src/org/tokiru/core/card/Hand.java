@@ -1,6 +1,5 @@
 package org.tokiru.core.card;
 
-import org.tokiru.core.card.spell.SpellCard;
 import org.tokiru.core.event.Event;
 import org.tokiru.core.event.Subscriber;
 import org.tokiru.core.hero.HeroClass;

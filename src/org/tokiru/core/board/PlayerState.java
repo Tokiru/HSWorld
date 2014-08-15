@@ -1,8 +1,8 @@
 package org.tokiru.core.board;
 
-import org.tokiru.core.deck.Deck;
 import org.tokiru.core.card.Hand;
 import org.tokiru.core.creature.Creature;
+import org.tokiru.core.deck.Deck;
 import org.tokiru.core.hero.Hero;
 import org.tokiru.core.player.Player;
 

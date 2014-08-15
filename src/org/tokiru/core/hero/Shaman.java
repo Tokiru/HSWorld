@@ -2,11 +2,11 @@ package org.tokiru.core.hero;
 
 import org.tokiru.core.board.BoardState;
 import org.tokiru.core.card.Card;
+import org.tokiru.core.card.spell.NonTargetSpellCard;
+import org.tokiru.core.card.spell.SpellCard;
 import org.tokiru.core.creature.Creature;
 import org.tokiru.core.creature.MinionBuilder;
 import org.tokiru.core.creature.SkeletonCreature;
-import org.tokiru.core.card.spell.NonTargetSpellCard;
-import org.tokiru.core.card.spell.SpellCard;
 import org.tokiru.core.event.Event;
 import org.tokiru.core.event.EventManager;
 

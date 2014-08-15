@@ -3,7 +3,8 @@ package org.tokiru.core.creature;
 import org.tokiru.core.board.BoardState;
 import org.tokiru.core.buff.AttackBuff;
 import org.tokiru.core.buff.Buff;
-import org.tokiru.core.creature.Creature;
+import org.tokiru.core.buff.CombinationBuff;
+import org.tokiru.core.buff.HealthBuff;
 import org.tokiru.core.event.*;
 import org.tokiru.core.player.Player;
 
@@ -233,6 +234,14 @@ public class SkeletonCreature implements Creature, Subscriber {
             if (buff instanceof AttackBuff) {
                 AttackBuff attackBuff = (AttackBuff) buff;
                 creature.changeAttack(attackBuff.attackBuff);
+            } else if (buff instanceof HealthBuff) {
+                HealthBuff healthBuff = (HealthBuff) buff;
+                creature.changeHealth(healthBuff.healthBuff);
+            } else if (buff instanceof CombinationBuff) {
+                CombinationBuff combinationBuff = (CombinationBuff) buff;
+                for (Buff buff1 : combinationBuff.buffList) {
+                    apply(buff1);
+                }
             } else {
                 throw new UnsupportedOperationException();
             }

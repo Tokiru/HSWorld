@@ -5,11 +5,11 @@ import org.tokiru.core.event.Event;
 /**
  * Created by tokiru.
  */
-public class AttackBuff extends SkeletonBuff implements Buff {
-    public int attackBuff;
+public class HealthBuff extends SkeletonBuff implements Buff {
+    public int healthBuff;
 
-    public AttackBuff(int attackBuff) {
-        this.attackBuff = attackBuff;
+    public HealthBuff(int healthBuff) {
+        this.healthBuff = healthBuff;
     }
 
     @Override
