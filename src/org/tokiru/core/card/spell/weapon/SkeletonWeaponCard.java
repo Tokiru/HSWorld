@@ -3,6 +3,7 @@ package org.tokiru.core.card.spell.weapon;
 import org.tokiru.core.Hero;
 import org.tokiru.core.board.BoardState;
 import org.tokiru.core.card.creature.Creature;
+import org.tokiru.core.event.EventManager;
 import org.tokiru.core.weapon.Weapon;
 
 /**
@@ -18,8 +19,8 @@ public class SkeletonWeaponCard implements WeaponCard {
     }
 
     @Override
-    public void play(Hero owner, BoardState boardState) {
-        weapon.setEviroment(owner, boardState);
+    public void play(Hero owner, BoardState boardState, EventManager eventManager) {
+        weapon.setEviroment(owner, boardState, eventManager);
         owner.setWeapon(weapon);
     }
 

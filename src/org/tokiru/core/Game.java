@@ -127,7 +127,7 @@ public class Game {
                             spellCard.play(null, boardState, currentPlayerID, boardState.getSpellDamage(currentPlayerID));
                         } else if (cardToPlay.getType() == Card.CardType.WEAPON) {
                             WeaponCard weaponCard = (WeaponCard) cardToPlay;
-                            weaponCard.play(boardState.getHero(currentPlayerID), boardState);
+                            weaponCard.play(boardState.getHero(currentPlayerID), boardState, eventManager);
                         }
                     } else {
                         System.out.println("not enough mana");
