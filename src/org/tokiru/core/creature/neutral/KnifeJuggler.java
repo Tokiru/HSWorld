@@ -1,8 +1,8 @@
-package org.tokiru.core.card.creature.neutral;
+package org.tokiru.core.creature.neutral;
 
 import org.tokiru.core.board.BoardState;
-import org.tokiru.core.card.creature.Creature;
-import org.tokiru.core.card.creature.SkeletonCreature;
+import org.tokiru.core.creature.Creature;
+import org.tokiru.core.creature.SkeletonCreature;
 import org.tokiru.core.event.Event;
 import org.tokiru.core.event.EventManager;
 import org.tokiru.core.event.SummonMinionEvent;

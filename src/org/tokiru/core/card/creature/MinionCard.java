@@ -2,6 +2,8 @@ package org.tokiru.core.card.creature;
 
 import org.tokiru.core.board.BoardState;
 import org.tokiru.core.card.Card;
+import org.tokiru.core.creature.Creature;
+import org.tokiru.core.creature.SkeletonCreature;
 
 /**
  * Created by tokiru.

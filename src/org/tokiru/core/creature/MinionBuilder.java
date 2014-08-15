@@ -1,4 +1,4 @@
-package org.tokiru.core.card.creature;
+package org.tokiru.core.creature;
 
 /**
  * Created by tokiru.
