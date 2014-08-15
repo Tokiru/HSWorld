@@ -10,6 +10,7 @@ public interface Event {
         END_TURN,
         SUMMON_MINION,
         CHARACTER_HEAL,
-        WEAPON_DESTROY
+        WEAPON_DESTROY,
+        SECRET_REVEALED
     }
 }
