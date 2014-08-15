@@ -20,7 +20,7 @@ public class SkeletonWeaponCard implements WeaponCard {
 
     @Override
     public void play(Hero owner, BoardState boardState, EventManager eventManager) {
-        weapon.setEviroment(owner, boardState, eventManager);
+        weapon.setEnvironment(owner, boardState, eventManager);
         owner.setWeapon(weapon);
     }
 

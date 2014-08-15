@@ -18,8 +18,8 @@ public class EaglehornBow extends Weapon implements Subscriber {
 
 
     @Override
-    public void setEnviroment(Hero owner, BoardState boardState, EventManager eventManager) {
-        super.setEnviroment(owner, boardState, eventManager);
+    public void setEnvironment(Hero owner, BoardState boardState, EventManager eventManager) {
+        super.setEnvironment(owner, boardState, eventManager);
         eventManager.subscribe(this, Event.EventType.SECRET_REVEALED);
     }
 
