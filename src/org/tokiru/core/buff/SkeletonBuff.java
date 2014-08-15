@@ -2,6 +2,7 @@ package org.tokiru.core.buff;
 
 import org.tokiru.core.board.BoardState;
 import org.tokiru.core.creature.Creature;
+import org.tokiru.core.event.BuffDisconnectEvent;
 
 /**
  * Created by tokiru.
@@ -21,6 +22,8 @@ public abstract class SkeletonBuff implements Buff {
     @Override
     public void discard() {
         boardState.getEventManager().unsubscribe(this);
+        creature.accept(new BuffDisconnectEvent(this));
+        this.creature = null;
     }
 
     @Override

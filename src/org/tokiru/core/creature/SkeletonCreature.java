@@ -58,7 +58,7 @@ public class SkeletonCreature implements Creature {
             maxNumberOfAttacks++;
         }
 
-        buffManager = new BuffManager(this);
+        buffManager = new BuffManager();
     }
 
     public SkeletonCreature(int health, int attack) {
@@ -120,6 +120,7 @@ public class SkeletonCreature implements Creature {
         deathRattle();
         eventManager.unsubscribe(this);
         eventManager.send(new MinionDieEvent(this));
+        buffManager.discardAll();
     }
 
     protected void deathRattle() {
@@ -239,12 +240,15 @@ public class SkeletonCreature implements Creature {
     }
 
     private class BuffManager {
-        public BuffManager(Creature creature) {
+        public BuffManager() {
             buffList = new ArrayList<>();
-            this.creature = creature;
+            this.creature = SkeletonCreature.this;
         }
 
         public void accept(Buff buff) {
+            if (buffList.contains(buff)) {
+                return ;
+            }
             buffList.add(buff);
             buff.init(creature, boardState);
             apply(buff);
@@ -269,6 +273,10 @@ public class SkeletonCreature implements Creature {
         }
 
         private void discard(Buff buff, boolean f) {
+            if (!buffList.contains(buff)) {
+                return;
+            }
+
             buff = buff.getRaw();
             if (buff instanceof AttackBuff) {
                 AttackBuff attackBuff = (AttackBuff) buff;
@@ -287,6 +295,13 @@ public class SkeletonCreature implements Creature {
                 buffList.remove(buff);
                 buff.discard();
             }
+        }
+
+        private void discardAll() {
+            for (Buff buff : buffList) {
+                buff.discard();
+            }
+            buffList.clear();
         }
 
         private void discard(Buff buff) {

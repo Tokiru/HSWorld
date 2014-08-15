@@ -12,7 +12,6 @@ public class OneTurnBuff extends SkeletonBuff implements Buff {
     @Override
     public void discard() {
         super.discard();
-        System.out.println("I am buff and I am discarded");
     }
 
     @Override
