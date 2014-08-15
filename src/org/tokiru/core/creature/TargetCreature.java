@@ -9,9 +9,11 @@ import org.tokiru.core.hero.Hero;
  * Created by tokiru.
  */
 public class TargetCreature extends SkeletonCreature implements Creature {
+    private boolean validateHero;
 
-    public TargetCreature(int health, int attack, String name, int cost) {
+    public TargetCreature(int health, int attack, String name, int cost, boolean validateHero) {
         super(health, attack, name, cost);
+        this.validateHero = validateHero;
     }
 
     public TargetCreature(int health, int attack, String name) {
@@ -36,6 +38,6 @@ public class TargetCreature extends SkeletonCreature implements Creature {
     }
 
     protected boolean validTarget(Creature target) {
-        return !(target instanceof Hero);
+        return !(target instanceof Hero) || validateHero;
     }
 }
