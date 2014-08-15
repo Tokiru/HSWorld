@@ -11,8 +11,7 @@ import org.tokiru.core.event.EventManager;
  */
 public class Coin extends SkeletonSpellCard implements SpellCard {
     public Coin() {
-        cost = 0;
-        name = "Coin";
+        super(0, "Coin");
     }
 
     @Override

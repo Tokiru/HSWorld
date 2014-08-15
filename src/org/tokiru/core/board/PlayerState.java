@@ -147,7 +147,7 @@ public class PlayerState {
         sb.append(hand);
         sb.append("\n");
 
-        sb.append("Mana max = " + manaCrystals + " current = " + currentMana + "\n");
+        sb.append("Mana max = ").append(manaCrystals).append(" current = ").append(currentMana).append("\n");
 
         return sb.toString();
     }

@@ -8,6 +8,14 @@ import org.tokiru.core.card.creature.Creature;
  */
 public abstract class TargetSpellCard extends SkeletonSpellCard implements SpellCard {
 
+    public TargetSpellCard(int cost) {
+        super(cost);
+    }
+
+    public TargetSpellCard(int cost, String name) {
+        super(cost, name);
+    }
+
     @Override
     public CardType getType() {
         return CardType.SPELL;
@@ -15,10 +23,6 @@ public abstract class TargetSpellCard extends SkeletonSpellCard implements Spell
 
     @Override
     public boolean canPlay(Creature target, BoardState boardState) {
-        if (target == null) {
-            return false;
-        } else {
-            return !target.isTargetImmune();
-        }
+        return target != null && !target.isTargetImmune();
     }
 }

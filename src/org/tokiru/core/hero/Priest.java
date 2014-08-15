@@ -18,7 +18,7 @@ public class Priest implements HeroClass {
 
     @Override
     public Card getAbilityCard() {
-        return new LesserHeal();
+        return new LesserHealCard();
     }
 
     @Override
@@ -26,7 +26,11 @@ public class Priest implements HeroClass {
         return "Anduin Wrynn";
     }
 
-    private class LesserHeal extends TargetSpellCard implements SpellCard {
+    private class LesserHealCard extends TargetSpellCard implements SpellCard {
+
+        public LesserHealCard() {
+            super(2, "Lesser heal");
+        }
 
         @Override
         public void play(Creature target, BoardState boardState, EventManager eventManager, int playerID, int spellDamage) {

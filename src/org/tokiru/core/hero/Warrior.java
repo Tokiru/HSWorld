@@ -18,7 +18,7 @@ public class Warrior implements HeroClass {
 
     @Override
     public Card getAbilityCard() {
-        new ShieldUp();
+        return new ShieldUpCard();
     }
 
     @Override
@@ -26,7 +26,10 @@ public class Warrior implements HeroClass {
         return "Garrosh Hellscream";
     }
 
-    private class ShieldUp extends NonTargetSpellCard implements SpellCard {
+    private class ShieldUpCard extends NonTargetSpellCard implements SpellCard {
+        public ShieldUpCard() {
+            super(2, "Shield up");
+        }
 
         @Override
         public void play(Creature target, BoardState boardState, EventManager eventManager, int playerID, int spellDamage) {

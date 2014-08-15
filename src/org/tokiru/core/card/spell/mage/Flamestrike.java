@@ -11,8 +11,7 @@ import org.tokiru.core.event.EventManager;
  */
 public class Flamestrike extends SkeletonSpellCard implements SpellCard {
     public Flamestrike() {
-        cost = 7;
-        name = "Flamestrike";
+        super(7, "Flamestrike");
     }
 
     @Override

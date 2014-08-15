@@ -24,9 +24,9 @@ public class EventManager {
 
     public void unsubscribe(Subscriber subscriber) {
         List<Entry> entriesToRemove = new ArrayList<>();
-        for (int i = 0; i < subscribers.size(); i++) {
-            if (subscribers.get(i).subscriber == subscriber) {
-                entriesToRemove.add(subscribers.get(i));
+        for (Entry subscriber1 : subscribers) {
+            if (subscriber1.subscriber == subscriber) {
+                entriesToRemove.add(subscriber1);
             }
         }
 

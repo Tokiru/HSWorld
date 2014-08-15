@@ -2,7 +2,6 @@ package org.tokiru.core.hero;
 
 import org.tokiru.core.board.BoardState;
 import org.tokiru.core.card.Card;
-import org.tokiru.core.card.SkeletonCard;
 import org.tokiru.core.card.creature.Creature;
 import org.tokiru.core.card.spell.SpellCard;
 import org.tokiru.core.card.spell.TargetSpellCard;
@@ -19,7 +18,7 @@ public class Mage implements HeroClass {
 
     @Override
     public Card getAbilityCard() {
-        return null;
+        return new FireblastCard(2);
     }
 
     @Override
@@ -27,7 +26,11 @@ public class Mage implements HeroClass {
         return "Jaina Proudmoore";
     }
 
-    private class Fireblast extends TargetSpellCard implements SpellCard {
+    private class FireblastCard extends TargetSpellCard implements SpellCard {
+
+        public FireblastCard(int cost) {
+            super(cost, "Fireblast");
+        }
 
         @Override
         public void play(Creature target, BoardState boardState, EventManager eventManager, int playerID, int spellDamage) {

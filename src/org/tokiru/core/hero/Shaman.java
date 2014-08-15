@@ -21,7 +21,7 @@ public class Shaman implements HeroClass {
 
     @Override
     public Card getAbilityCard() {
-        return new TotemicCall();
+        return new TotemicCallCard();
     }
 
     @Override
@@ -29,7 +29,11 @@ public class Shaman implements HeroClass {
         return "Thrall";
     }
 
-    private class TotemicCall extends NonTargetSpellCard implements SpellCard {
+    private class TotemicCallCard extends NonTargetSpellCard implements SpellCard {
+
+        public TotemicCallCard() {
+            super(2, "Totemic Call");
+        }
 
         @Override
         public void play(Creature target, BoardState boardState, EventManager eventManager, int playerID, int spellDamage) {

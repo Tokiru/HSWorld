@@ -27,6 +27,9 @@ public class Hunter implements HeroClass {
     }
 
     private class SteadyShotCard extends NonTargetSpellCard implements SpellCard {
+        public SteadyShotCard() {
+            super(2, "Steady Shot");
+        }
         @Override
         public void play(Creature target, BoardState boardState, EventManager eventManager, int playerID, int spellDamage) {
             assert target == null;

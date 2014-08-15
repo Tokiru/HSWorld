@@ -19,7 +19,7 @@ public class Paladin implements HeroClass {
 
     @Override
     public Card getAbilityCard() {
-        return new Reinforcement();
+        return new ReinforcementCard(2);
     }
 
     @Override
@@ -27,11 +27,15 @@ public class Paladin implements HeroClass {
         return "Uther Lightbringer";
     }
 
-    private class Reinforcement extends NonTargetSpellCard implements SpellCard {
+    private class ReinforcementCard extends NonTargetSpellCard implements SpellCard {
+
+        public ReinforcementCard(int cost) {
+            super(cost, "Reinforcement");
+        }
 
         @Override
         public void play(Creature target, BoardState boardState, EventManager eventManager, int playerID, int spellDamage) {
-            boardState.addCreature(new MinionBuilder().setHealth(1).setAttack(1).compile().getCreature(), playerID);
+            boardState.addCreature(new MinionBuilder().setHealth(1).setAttack(1).setName("Silverhand Recruit").compile().getCreature(), playerID);
         }
     }
 }

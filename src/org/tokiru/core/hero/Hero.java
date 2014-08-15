@@ -39,6 +39,7 @@ public class Hero extends SkeletonCreature implements Creature, Subscriber {
 
     @Override
     public boolean canAttack(Creature target) {
+        //noinspection StatementWithEmptyBody
         if (weapon != null && weapon.getAttack() > 0) {
 
         } else {
@@ -90,6 +91,6 @@ public class Hero extends SkeletonCreature implements Creature, Subscriber {
         } else {
             s = "none";
         }
-        return getName() + " health = " + health + "armor = " + armor + " weapon = " + s;
+        return getName() + " health = " + health + " armor = " + armor + " weapon = " + s;
     }
 }

@@ -88,7 +88,7 @@ public class MinionBuilder {
         creature.spellDamage = spellDamage;
         creature.windFurry = windFurry;
         creature.race = race;
-        creature.targetImmune = true;
+        creature.targetImmune = targetImmune;
         return this;
     }
 

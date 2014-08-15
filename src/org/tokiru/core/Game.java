@@ -11,7 +11,6 @@ import org.tokiru.core.card.spell.neutral.Coin;
 import org.tokiru.core.card.spell.weapon.WeaponCard;
 import org.tokiru.core.event.EndTurnEvent;
 import org.tokiru.core.event.EventManager;
-import org.tokiru.core.event.SummonMinionEvent;
 import org.tokiru.core.hero.Hero;
 import org.tokiru.core.player.Player;
 import org.tokiru.core.turn.AttackTurn;
@@ -99,6 +98,7 @@ public class Game {
                     Creature defenseCreature = boardState.getByID(attackTurn.getToID());
                     if (attackCreature.canAttack(defenseCreature)) {
                         attackCreature.hit(defenseCreature);
+                        //noinspection StatementWithEmptyBody
                         if (attackCreature instanceof Hero) {
                             // do nothing
                         } else {

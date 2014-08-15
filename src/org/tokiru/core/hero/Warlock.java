@@ -18,7 +18,7 @@ public class Warlock implements HeroClass {
 
     @Override
     public Card getAbilityCard() {
-        return new LifeDrain();
+        return new LifeDrainCard();
     }
 
     @Override
@@ -26,7 +26,11 @@ public class Warlock implements HeroClass {
         return "Gul'dan";
     }
 
-    private class LifeDrain extends NonTargetSpellCard implements SpellCard {
+    private class LifeDrainCard extends NonTargetSpellCard implements SpellCard {
+
+        public LifeDrainCard() {
+            super(2, "Life Drain");
+        }
 
         @Override
         public void play(Creature target, BoardState boardState, EventManager eventManager, int playerID, int spellDamage) {
