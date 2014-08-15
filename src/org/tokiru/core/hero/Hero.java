@@ -15,11 +15,9 @@ public class Hero extends SkeletonCreature implements Creature, Subscriber {
     private Weapon weapon;
 
     public Hero(HeroClass heroClass) {
-        super(30, 0, "Rexxar");
-        charge = true;
+        super(30, 0, heroClass.getName());
         this.heroClass = heroClass;
-        /*health = 30;
-        attack = 0;*/
+        charge = true;
     }
 
     @Override
