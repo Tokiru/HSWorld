@@ -1,0 +1,4 @@
+HSWorld
+=======
+
+Java Hearthstone implementation
