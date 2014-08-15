@@ -1,14 +1,12 @@
 package org.tokiru.core.card.spell;
 
 import org.tokiru.core.board.BoardState;
-import org.tokiru.core.card.Card;
-import org.tokiru.core.card.SkeletonCard;
 import org.tokiru.core.card.creature.Creature;
 
 /**
  * Created by tokiru.
  */
-public abstract class TargetSpellCard extends SkeletonCard implements SpellCard {
+public abstract class TargetSpellCard extends SkeletonSpellCard implements SpellCard {
 
     @Override
     public CardType getType() {

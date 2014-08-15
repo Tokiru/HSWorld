@@ -25,10 +25,6 @@ public class MinionCard implements Card {
         this.cost = cost;
     }
 
-    public static MinionCard Yeti() {
-        return new MinionBuilder().setAttack(4).setHealth(5).setCost(4).setName("Yeti").getCard();
-    }
-
     @Override
     public int getCost() {
         return cost;

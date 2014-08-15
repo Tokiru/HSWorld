@@ -1,10 +1,10 @@
 package org.tokiru.core.weapon;
 
-import org.tokiru.core.hero.Hero;
 import org.tokiru.core.board.BoardState;
 import org.tokiru.core.card.creature.Creature;
 import org.tokiru.core.event.EventManager;
 import org.tokiru.core.event.WeaponDestroyEvent;
+import org.tokiru.core.hero.Hero;
 
 /**
  * Created by tokiru.

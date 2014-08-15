@@ -3,6 +3,8 @@ package org.tokiru;
 import org.tokiru.core.Game;
 import org.tokiru.core.card.Card;
 import org.tokiru.core.card.SkeletonDeck;
+import org.tokiru.core.hero.Mage;
+import org.tokiru.core.hero.Paladin;
 import org.tokiru.core.player.SkeletonPlayer;
 
 import java.util.ArrayList;
@@ -12,8 +14,8 @@ public class Main {
 
     public static void main(String[] args) {
         Game game = new Game();
-        SkeletonPlayer player1 = new SkeletonPlayer();
-        SkeletonPlayer player2 = new SkeletonPlayer();
+        SkeletonPlayer player1 = new SkeletonPlayer(new Mage());
+        SkeletonPlayer player2 = new SkeletonPlayer(new Paladin());
 
         game.registerPlayer(player1);
         game.registerPlayer(player2);

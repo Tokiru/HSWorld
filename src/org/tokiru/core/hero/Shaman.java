@@ -1,6 +1,14 @@
 package org.tokiru.core.hero;
 
+import org.tokiru.core.board.BoardState;
 import org.tokiru.core.card.Card;
+import org.tokiru.core.card.creature.Creature;
+import org.tokiru.core.card.creature.MinionBuilder;
+import org.tokiru.core.card.creature.SkeletonCreature;
+import org.tokiru.core.card.spell.NonTargetSpellCard;
+import org.tokiru.core.card.spell.SpellCard;
+import org.tokiru.core.event.Event;
+import org.tokiru.core.event.EventManager;
 
 /**
  * Created by tokiru.
@@ -13,11 +21,48 @@ public class Shaman implements HeroClass {
 
     @Override
     public Card getAbilityCard() {
-        return null;
+        return new TotemicCall();
     }
 
     @Override
     public String getName() {
         return "Thrall";
+    }
+
+    private class TotemicCall extends NonTargetSpellCard implements SpellCard {
+
+        @Override
+        public void play(Creature target, BoardState boardState, EventManager eventManager, int playerID, int spellDamage) {
+            int totemType = (int) (Math.random() * 4);
+            Creature totem;
+            if (totemType == 0) {
+                totem = new MinionBuilder().setHealth(2).setAttack(0).taunt().setName("Stoneclaw totem").compile().getCreature();
+            } else if (totemType == 1) {
+                totem = new MinionBuilder().setHealth(2).setAttack(0).spellDamage(1).
+                        setName("Airwrath totem").compile().getCreature();
+            } else if (totemType == 2) {
+                totem = new HealingTotem();
+            } else {
+                totem = new MinionBuilder().setHealth(1).setAttack(1).setName("Searing totem").compile().getCreature();
+            }
+
+            boardState.addCreature(totem, playerID);
+        }
+
+        private class HealingTotem extends SkeletonCreature implements Creature {
+            public HealingTotem() {
+                super(1, 1, "Healing totem");
+            }
+
+            @Override
+            public void accept(Event event) {
+                super.accept(event);
+                if (event.getType() == Event.EventType.END_TURN) {
+                    for (Creature creature : boardState.getFriendlyMinions(boardState.getPlayerID(this))) {
+                        creature.takeHeal(1);
+                    }
+                }
+            }
+        }
     }
 }

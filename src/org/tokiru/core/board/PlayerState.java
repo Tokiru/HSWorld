@@ -1,9 +1,9 @@
 package org.tokiru.core.board;
 
-import org.tokiru.core.hero.Hero;
 import org.tokiru.core.card.Deck;
 import org.tokiru.core.card.Hand;
 import org.tokiru.core.card.creature.Creature;
+import org.tokiru.core.hero.Hero;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,7 +1,7 @@
 package org.tokiru.core.weapon;
 
-import org.tokiru.core.hero.Hero;
 import org.tokiru.core.card.creature.Creature;
+import org.tokiru.core.hero.Hero;
 
 /**
  * Created by tokiru.

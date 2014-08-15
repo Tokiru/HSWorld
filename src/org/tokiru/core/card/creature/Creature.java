@@ -38,6 +38,8 @@ public interface Creature {
 
     Race getRace();
 
+    boolean isTargetImmune();
+
     enum Race {
         NONE,
         BEAST,

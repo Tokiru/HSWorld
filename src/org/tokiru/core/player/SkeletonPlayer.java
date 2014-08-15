@@ -1,11 +1,12 @@
 package org.tokiru.core.player;
 
-import org.tokiru.core.hero.Hero;
-import org.tokiru.core.hero.HeroClass;
 import org.tokiru.core.board.BoardState;
 import org.tokiru.core.card.Card;
 import org.tokiru.core.card.Deck;
 import org.tokiru.core.card.SkeletonDeck;
+import org.tokiru.core.hero.Hero;
+import org.tokiru.core.hero.HeroClass;
+import org.tokiru.core.hero.Hunter;
 import org.tokiru.core.turn.*;
 
 import java.io.BufferedReader;
@@ -24,14 +25,13 @@ public class SkeletonPlayer implements Player {
     private String name;
     private int id;
 
-    public SkeletonPlayer() {
-        this("Unnamed");
+    public SkeletonPlayer(HeroClass heroClass) {
+        this.deck = new SkeletonDeck();
+        this.hero = new Hero(heroClass);
     }
 
-    public SkeletonPlayer(String name) {
-        this.deck = new SkeletonDeck();
-        this.hero = new Hero(HeroClass.HUNTER);
-        this.name = name;
+    public SkeletonPlayer() {
+        this(new Hunter());
     }
 
     @Override
@@ -78,7 +78,7 @@ public class SkeletonPlayer implements Player {
 
     @Override
     public String getName() {
-        return name;
+        return "Poligraph";
     }
 
     @Override

@@ -1,11 +1,11 @@
 package org.tokiru.core.weapon;
 
-import org.tokiru.core.hero.Hero;
 import org.tokiru.core.board.BoardState;
 import org.tokiru.core.event.Event;
 import org.tokiru.core.event.EventManager;
 import org.tokiru.core.event.SecretRevealedEvent;
 import org.tokiru.core.event.Subscriber;
+import org.tokiru.core.hero.Hero;
 
 /**
  * Created by tokiru.

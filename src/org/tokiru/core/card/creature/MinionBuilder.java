@@ -78,6 +78,7 @@ public class MinionBuilder {
     }
 
     public MinionBuilder compile() {
+        creature = new SkeletonCreature();
         creature.name = name;
         creature.attack = attack;
         creature.health = health;

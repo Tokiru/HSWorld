@@ -121,11 +121,10 @@ public class Game {
                             Creature creature = minionCard.getCreature();
                             boardState.addCreature(creature, currentPlayerID);
                             creature.spawn(players.get(currentPlayerID), boardState, eventManager);
-                            eventManager.send(new SummonMinionEvent(creature));
                         } else if (cardToPlay.getType() == Card.CardType.SPELL) {
                             // ToDo use target
                             SpellCard spellCard = (SpellCard) cardToPlay;
-                            spellCard.play(null, boardState, currentPlayerID, boardState.getSpellDamage(currentPlayerID));
+                            spellCard.play(null, boardState, eventManager, currentPlayerID, boardState.getSpellDamage(currentPlayerID));
                         } else if (cardToPlay.getType() == Card.CardType.WEAPON) {
                             WeaponCard weaponCard = (WeaponCard) cardToPlay;
                             weaponCard.play(boardState.getHero(currentPlayerID), boardState, eventManager);

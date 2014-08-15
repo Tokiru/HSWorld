@@ -1,10 +1,7 @@
 package org.tokiru.core.card.creature;
 
 import org.tokiru.core.board.BoardState;
-import org.tokiru.core.event.CharacterHealEvent;
-import org.tokiru.core.event.Event;
-import org.tokiru.core.event.EventManager;
-import org.tokiru.core.event.Subscriber;
+import org.tokiru.core.event.*;
 import org.tokiru.core.player.Player;
 
 /**
@@ -30,6 +27,7 @@ public class SkeletonCreature implements Creature, Subscriber {
     protected EventManager eventManager;
     protected Player owner;
     protected Race race;
+    protected boolean targetImmune;
 
     public SkeletonCreature(int health, int attack, String name) {
         this.health = health;
@@ -92,6 +90,7 @@ public class SkeletonCreature implements Creature, Subscriber {
         this.eventManager = eventManager;
         this.owner = owner;
         eventManager.subscribe(this, Event.EventType.END_TURN);
+        eventManager.send(new SummonMinionEvent(this));
     }
 
     @Override
@@ -165,6 +164,11 @@ public class SkeletonCreature implements Creature, Subscriber {
     @Override
     public Race getRace() {
         return race;
+    }
+
+    @Override
+    public boolean isTargetImmune() {
+        return targetImmune;
     }
 
     @Override
