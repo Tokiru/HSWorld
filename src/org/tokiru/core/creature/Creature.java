@@ -3,12 +3,13 @@ package org.tokiru.core.creature;
 import org.tokiru.core.board.BoardState;
 import org.tokiru.core.buff.Buff;
 import org.tokiru.core.event.EventManager;
+import org.tokiru.core.event.Subscriber;
 import org.tokiru.core.player.Player;
 
 /**
  * Created by tokiru.
  */
-public interface Creature {
+public interface Creature extends Subscriber {
     int getHealth();
 
     int getAttack();

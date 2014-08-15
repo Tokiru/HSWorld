@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Created by tokiru.
  */
-public class SkeletonCreature implements Creature, Subscriber {
+public class SkeletonCreature implements Creature {
 
     protected String name;
     protected int health;
@@ -207,7 +207,7 @@ public class SkeletonCreature implements Creature, Subscriber {
 
     @Override
     public String toString() {
-        return "name = " + name + " health = " + health + " attack = " + attack;
+        return "name = " + name + " attack = " + attack + " health = " + health;
     }
 
     @Override
@@ -215,6 +215,9 @@ public class SkeletonCreature implements Creature, Subscriber {
         if (event.getType() == Event.EventType.END_TURN) {
             numberOfAttacksThisTurn = 0;
             firstTurn = false;
+        } else if (event.getType() == Event.EventType.BUFF_DISCONNECT) {
+            Buff buff =  ((BuffDisconnectEvent) (event)).buff;
+            buffManager.discard(buff);
         }
     }
 
@@ -231,6 +234,7 @@ public class SkeletonCreature implements Creature, Subscriber {
         }
 
         private void apply(Buff buff) {
+            buff = buff.getRaw();
             if (buff instanceof AttackBuff) {
                 AttackBuff attackBuff = (AttackBuff) buff;
                 creature.changeAttack(attackBuff.attackBuff);
@@ -243,8 +247,33 @@ public class SkeletonCreature implements Creature, Subscriber {
                     apply(buff1);
                 }
             } else {
-                throw new UnsupportedOperationException();
+                System.out.println("WARNING! buff isn't recognized");
             }
+        }
+
+        private void discard(Buff buff, boolean f) {
+            buff = buff.getRaw();
+            if (buff instanceof AttackBuff) {
+                AttackBuff attackBuff = (AttackBuff) buff;
+                creature.changeAttack(-attackBuff.attackBuff);
+            } else if (buff instanceof HealthBuff) {
+                HealthBuff healthBuff = (HealthBuff) buff;
+                creature.changeHealth(-healthBuff.healthBuff);
+            } else if (buff instanceof CombinationBuff) {
+                CombinationBuff combinationBuff = (CombinationBuff) buff;
+                for (Buff buff1 : combinationBuff.buffList) {
+                    discard(buff1, false);
+                }
+            }
+
+            if (f) {
+                buffList.remove(buff);
+                buff.discard();
+            }
+        }
+
+        private void discard(Buff buff) {
+            discard(buff, true);
         }
 
         private List<Buff> buffList;

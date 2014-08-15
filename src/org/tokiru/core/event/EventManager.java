@@ -34,7 +34,8 @@ public class EventManager {
     }
 
     public void send(Event event) {
-        for (Entry subscriber : subscribers) {
+        List<Entry> subscribersCopy = new ArrayList<>(subscribers);
+        for (Entry subscriber : subscribersCopy) {
             if (subscriber.eventType == event.getType()) {
                 subscriber.subscriber.accept(event);
             }

@@ -5,7 +5,6 @@ import org.tokiru.core.card.creature.MinionCard;
 import org.tokiru.core.card.creature.neutral.MinionFactory;
 import org.tokiru.core.card.spell.mage.Flamestrike;
 import org.tokiru.core.card.spell.paladin.BlessingOfKings;
-import org.tokiru.core.card.spell.paladin.BlessingOfMight;
 import org.tokiru.core.creature.MinionBuilder;
 
 import java.util.ArrayList;
@@ -24,6 +23,7 @@ public class SkeletonDeck implements Deck {
         cards = new ArrayList<>();
         cardCounter = 0;
 
+        cards.add(new BlessingOfKings());
         cards.add(new BlessingOfKings());
         cards.add(MinionFactory.harvestGolemCard());
         cards.add(MinionFactory.knifeJugglerCard());

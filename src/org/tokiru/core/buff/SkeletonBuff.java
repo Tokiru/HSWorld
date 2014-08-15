@@ -18,6 +18,16 @@ public abstract class SkeletonBuff implements Buff {
         return "Buff";
     }
 
+    @Override
+    public void discard() {
+        boardState.getEventManager().unsubscribe(this);
+    }
+
+    @Override
+    public Buff getRaw() {
+        return this;
+    }
+
     protected Creature creature;
     protected BoardState boardState;
 }

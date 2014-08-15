@@ -11,4 +11,5 @@ public interface Buff extends Subscriber {
     void init(Creature creature, BoardState boardState);
     void discard();
     String getName();
+    Buff getRaw();
 }

@@ -103,7 +103,7 @@ public class Game {
                     if (attackCreature.canAttack(defenseCreature)) {
                         attackCreature.hit(defenseCreature);
                         //noinspection StatementWithEmptyBody
-                        if (attackCreature instanceof Hero) {
+                        if (attackCreature instanceof Hero || defenseCreature instanceof Hero) {
                             // do nothing
                         } else {
                             defenseCreature.hit(attackCreature);
