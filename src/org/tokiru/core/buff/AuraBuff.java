@@ -20,7 +20,9 @@ public class AuraBuff extends SkeletonBuff implements Buff {
     public void accept(Event event) {
         if (event.getType() == Event.EventType.MINION_DIE || event.getType() == Event.EventType.SUMMON_MINION) {
             for (Creature creature1 : boardState.getFriendlyMinions(creature.getOwner().getID())) {
-                creature1.accept(innerBuff);
+                if (creature1 != creature) {
+                    creature1.accept(innerBuff);
+                }
             }
         }
     }
