@@ -12,6 +12,7 @@ public interface Event {
         CHARACTER_HEAL,
         WEAPON_DESTROY,
         SECRET_REVEALED,
+        MINION_DIE,
 
         BUFF_DISCONNECT
     }

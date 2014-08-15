@@ -119,6 +119,7 @@ public class SkeletonCreature implements Creature {
     public void die() {
         deathRattle();
         eventManager.unsubscribe(this);
+        eventManager.send(new MinionDieEvent(this));
     }
 
     protected void deathRattle() {
