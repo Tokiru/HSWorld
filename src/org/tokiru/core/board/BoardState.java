@@ -68,14 +68,17 @@ public class BoardState {
 
     public void addCreature(Creature creature, int playerID) {
         playerStates.get(playerID).addCreature(creature);
+        creature.spawn(playerStates.get(playerID).getPlayer(), this, eventManager);
     }
 
     public void addCreatureLeft(Creature creature, Creature target, int playerID) {
         playerStates.get(playerID).addCreatureLeft(creature, target);
+        creature.spawn(playerStates.get(playerID).getPlayer(), this, eventManager);
     }
 
     public void addCreatureRight(Creature creature, Creature target, int playerID) {
         playerStates.get(playerID).addCreatureRight(creature, target);
+        creature.spawn(playerStates.get(playerID).getPlayer(), this, eventManager);
     }
 
     public void removeCreature(Creature creature) {

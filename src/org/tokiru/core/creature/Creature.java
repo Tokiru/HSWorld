@@ -1,6 +1,7 @@
 package org.tokiru.core.creature;
 
 import org.tokiru.core.board.BoardState;
+import org.tokiru.core.buff.Buff;
 import org.tokiru.core.event.EventManager;
 import org.tokiru.core.player.Player;
 
@@ -39,6 +40,12 @@ public interface Creature {
     Race getRace();
 
     boolean isTargetImmune();
+
+    void accept(Buff buff);
+
+    void changeAttack(int value);
+
+    void changeHealth(int value);
 
     enum Race {
         NONE,

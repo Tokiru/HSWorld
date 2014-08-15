@@ -1,9 +1,14 @@
 package org.tokiru.core.creature;
 
 import org.tokiru.core.board.BoardState;
+import org.tokiru.core.buff.AttackBuff;
+import org.tokiru.core.buff.Buff;
 import org.tokiru.core.creature.Creature;
 import org.tokiru.core.event.*;
 import org.tokiru.core.player.Player;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by tokiru.
@@ -30,6 +35,8 @@ public class SkeletonCreature implements Creature, Subscriber {
     protected Race race;
     protected boolean targetImmune;
 
+    protected BuffManager buffManager;
+
     public SkeletonCreature(int health, int attack, String name) {
         this.health = health;
         this.maxHealth = health;
@@ -42,6 +49,8 @@ public class SkeletonCreature implements Creature, Subscriber {
         if (windFurry) {
             maxNumberOfAttacks++;
         }
+
+        buffManager = new BuffManager(this);
     }
 
     public SkeletonCreature(int health, int attack) {
@@ -181,6 +190,21 @@ public class SkeletonCreature implements Creature, Subscriber {
     }
 
     @Override
+    public void accept(Buff buff) {
+        buffManager.accept(buff);
+    }
+
+    @Override
+    public void changeAttack(int value) {
+        attack = Math.max(0, value + attack);
+    }
+
+    @Override
+    public void changeHealth(int value) {
+        health = Math.max(0, value + health);
+    }
+
+    @Override
     public String toString() {
         return "name = " + name + " health = " + health + " attack = " + attack;
     }
@@ -191,5 +215,30 @@ public class SkeletonCreature implements Creature, Subscriber {
             numberOfAttacksThisTurn = 0;
             firstTurn = false;
         }
+    }
+
+    private class BuffManager {
+        public BuffManager(Creature creature) {
+            buffList = new ArrayList<>();
+            this.creature = creature;
+        }
+
+        public void accept(Buff buff) {
+            buffList.add(buff);
+            buff.init(creature, boardState);
+            apply(buff);
+        }
+
+        private void apply(Buff buff) {
+            if (buff instanceof AttackBuff) {
+                AttackBuff attackBuff = (AttackBuff) buff;
+                creature.changeAttack(attackBuff.attackBuff);
+            } else {
+                throw new UnsupportedOperationException();
+            }
+        }
+
+        private List<Buff> buffList;
+        private Creature creature;
     }
 }

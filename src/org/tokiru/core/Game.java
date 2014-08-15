@@ -51,6 +51,7 @@ public class Game {
         assert players.size() == 2;
         state = State.RUNNING;
         boardState = new BoardState();
+        boardState.setEventManager(eventManager);
         for (int playerID = 0; playerID < players.size(); playerID++) {
             boardState.setPlayer(players.get(playerID));
             boardState.setHero(players.get(playerID).getHero(), playerID);

@@ -2,6 +2,7 @@ package org.tokiru.core.deck;
 
 import org.tokiru.core.card.Card;
 import org.tokiru.core.card.creature.neutral.MinionFactory;
+import org.tokiru.core.card.spell.paladin.BlessingOfMight;
 import org.tokiru.core.creature.MinionBuilder;
 import org.tokiru.core.card.creature.MinionCard;
 import org.tokiru.core.card.spell.mage.Flamestrike;
@@ -24,8 +25,9 @@ public class SkeletonDeck implements Deck {
         cards = new ArrayList<>();
         cardCounter = 0;
 
+        cards.add(new BlessingOfMight());
         cards.add(MinionFactory.harvestGolemCard());
-        cards.add(WeaponFactory.arcaniteRapierCard());
+        cards.add(MinionFactory.knifeJugglerCard());
         cards.add(new MinionBuilder().setAttack(2).setHealth(1).charge().setName("charger").setCost(2).compile().getCard());
         cards.add(new MinionBuilder().setAttack(0).setHealth(10).taunt().setName("taunt").setCost(3).compile().getCard());
 
