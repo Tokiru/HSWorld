@@ -3,6 +3,7 @@ package org.tokiru.core.weapon;
 import org.tokiru.core.Hero;
 import org.tokiru.core.board.BoardState;
 import org.tokiru.core.card.creature.Creature;
+import org.tokiru.core.event.EventManager;
 import org.tokiru.core.event.WeaponDestroyEvent;
 
 /**
@@ -14,6 +15,7 @@ public class Weapon {
     protected int attack;
     protected String name;
     protected BoardState boardState;
+    protected EventManager eventManager;
 
     public int getDurability() {
         return durability;
@@ -37,9 +39,10 @@ public class Weapon {
         this(null);
     }
 
-    public void setEviroment(Hero owner, BoardState boardState) {
+    public void setEviroment(Hero owner, BoardState boardState, EventManager eventManager) {
         this.owner = owner;
         this.boardState = boardState;
+        this.eventManager = eventManager;
     }
 
     public void use(Creature target) {
