@@ -1,4 +1,6 @@
-package org.tokiru.core.card;
+package org.tokiru.core.deck;
+
+import org.tokiru.core.card.Card;
 
 import java.util.List;
 

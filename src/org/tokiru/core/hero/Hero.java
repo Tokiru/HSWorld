@@ -1,7 +1,7 @@
 package org.tokiru.core.hero;
 
-import org.tokiru.core.card.creature.Creature;
-import org.tokiru.core.card.creature.SkeletonCreature;
+import org.tokiru.core.creature.Creature;
+import org.tokiru.core.creature.SkeletonCreature;
 import org.tokiru.core.event.Event;
 import org.tokiru.core.event.Subscriber;
 import org.tokiru.core.weapon.Weapon;

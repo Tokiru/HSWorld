@@ -2,8 +2,8 @@ package org.tokiru.core.hero;
 
 import org.tokiru.core.board.BoardState;
 import org.tokiru.core.card.Card;
-import org.tokiru.core.card.creature.Creature;
-import org.tokiru.core.card.creature.MinionBuilder;
+import org.tokiru.core.creature.Creature;
+import org.tokiru.core.creature.MinionBuilder;
 import org.tokiru.core.card.spell.NonTargetSpellCard;
 import org.tokiru.core.card.spell.SpellCard;
 import org.tokiru.core.event.EventManager;
@@ -37,7 +37,6 @@ public class Paladin implements HeroClass {
         public void play(Creature target, BoardState boardState, EventManager eventManager, int playerID, int spellDamage) {
             Creature creature = new MinionBuilder().setHealth(1).setAttack(1).setName("Silverhand Recruit").compile().getCreature();
             boardState.addCreature(creature, playerID);
-            creature.spawn(boardState.getPlayer(playerID), boardState, eventManager);
         }
     }
 }

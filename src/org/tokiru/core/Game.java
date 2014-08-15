@@ -2,9 +2,9 @@ package org.tokiru.core;
 
 import org.tokiru.core.board.BoardState;
 import org.tokiru.core.card.Card;
-import org.tokiru.core.card.Deck;
+import org.tokiru.core.deck.Deck;
 import org.tokiru.core.card.Hand;
-import org.tokiru.core.card.creature.Creature;
+import org.tokiru.core.creature.Creature;
 import org.tokiru.core.card.creature.MinionCard;
 import org.tokiru.core.card.spell.SpellCard;
 import org.tokiru.core.card.spell.neutral.Coin;
@@ -77,9 +77,6 @@ public class Game {
         while (!boardState.gameOver()) {
             System.out.println(currentPlayerID + " turn!");
 
-            //
-            addHeroPower(currentPlayerID);
-
             // draw card
             Card newCard = boardState.getDeck(currentPlayerID).dealCard();
             if (newCard == null) {
@@ -132,7 +129,6 @@ public class Game {
                             MinionCard minionCard = (MinionCard) cardToPlay;
                             Creature creature = minionCard.getCreature();
                             boardState.addCreature(creature, currentPlayerID);
-                            creature.spawn(players.get(currentPlayerID), boardState, eventManager);
                         } else if (cardToPlay.getType() == Card.CardType.SPELL) {
                             SpellCard spellCard = (SpellCard) cardToPlay;
                             spellCard.play(target, boardState, eventManager, currentPlayerID, boardState.getSpellDamage(currentPlayerID));

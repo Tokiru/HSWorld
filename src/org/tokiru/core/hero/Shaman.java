@@ -2,9 +2,9 @@ package org.tokiru.core.hero;
 
 import org.tokiru.core.board.BoardState;
 import org.tokiru.core.card.Card;
-import org.tokiru.core.card.creature.Creature;
-import org.tokiru.core.card.creature.MinionBuilder;
-import org.tokiru.core.card.creature.SkeletonCreature;
+import org.tokiru.core.creature.Creature;
+import org.tokiru.core.creature.MinionBuilder;
+import org.tokiru.core.creature.SkeletonCreature;
 import org.tokiru.core.card.spell.NonTargetSpellCard;
 import org.tokiru.core.card.spell.SpellCard;
 import org.tokiru.core.event.Event;
@@ -42,7 +42,7 @@ public class Shaman implements HeroClass {
             if (totemType == 0) {
                 totem = new MinionBuilder().setHealth(2).setAttack(0).taunt().setName("Stoneclaw totem").compile().getCreature();
             } else if (totemType == 1) {
-                totem = new MinionBuilder().setHealth(2).setAttack(0).spellDamage(1).
+                totem = new MinionBuilder().setHealth(2).setAttack(0).setSpellDamage(1).
                         setName("Airwrath totem").compile().getCreature();
             } else if (totemType == 2) {
                 totem = new HealingTotem();

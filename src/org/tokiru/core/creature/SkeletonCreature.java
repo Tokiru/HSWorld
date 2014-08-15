@@ -94,10 +94,18 @@ public class SkeletonCreature implements Creature, Subscriber {
         eventManager.send(new SummonMinionEvent(this));
     }
 
+    protected void battleCry() {
+
+    }
+
     @Override
     public void die() {
-        System.out.println(toString() + " deathrattle");
+        deathRattle();
         eventManager.unsubscribe(this);
+    }
+
+    protected void deathRattle() {
+
     }
 
     @Override

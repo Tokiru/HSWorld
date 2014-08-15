@@ -1,6 +1,6 @@
 package org.tokiru.core.event;
 
-import org.tokiru.core.card.creature.Creature;
+import org.tokiru.core.creature.Creature;
 
 /**
  * Created by tokiru.

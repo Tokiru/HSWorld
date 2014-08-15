@@ -1,5 +1,7 @@
 package org.tokiru.core.creature;
 
+import org.tokiru.core.card.creature.MinionCard;
+
 /**
  * Created by tokiru.
  */
@@ -20,6 +22,12 @@ public class MinionBuilder {
 
     public MinionBuilder() {
 
+    }
+
+    public MinionBuilder(String name, int attack, int health) {
+        this.name = name;
+        this.attack = attack;
+        this.health = health;
     }
 
     public MinionBuilder setName(String name) {
@@ -62,12 +70,12 @@ public class MinionBuilder {
         return this;
     }
 
-    public MinionBuilder spellDamage(int spellDamage) {
+    public MinionBuilder setSpellDamage(int spellDamage) {
         this.spellDamage = spellDamage;
         return this;
     }
 
-    public MinionBuilder race(Creature.Race race) {
+    public MinionBuilder setRace(Creature.Race race) {
         this.race = race;
         return this;
     }
@@ -93,10 +101,12 @@ public class MinionBuilder {
     }
 
     public Creature getCreature() {
+        compile();
         return creature;
     }
 
     public MinionCard getCard() {
+        compile();
         return new MinionCard(cost, creature);
     }
 }

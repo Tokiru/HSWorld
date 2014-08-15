@@ -1,7 +1,7 @@
 package org.tokiru.core.card;
 
 import org.tokiru.core.board.BoardState;
-import org.tokiru.core.card.creature.Creature;
+import org.tokiru.core.creature.Creature;
 
 /**
  * Created by tokiru.

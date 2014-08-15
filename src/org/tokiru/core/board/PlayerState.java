@@ -1,8 +1,8 @@
 package org.tokiru.core.board;
 
-import org.tokiru.core.card.Deck;
+import org.tokiru.core.deck.Deck;
 import org.tokiru.core.card.Hand;
-import org.tokiru.core.card.creature.Creature;
+import org.tokiru.core.creature.Creature;
 import org.tokiru.core.hero.Hero;
 import org.tokiru.core.player.Player;
 
@@ -62,6 +62,16 @@ public class PlayerState {
 
     public void addCreature(Creature creature) {
         creatures.add(creature);
+    }
+
+    public void addCreatureLeft(Creature creature, Creature target) {
+        int index = Math.max(0, creatures.indexOf(target) - 1);
+        addCreature(creature, index);
+    }
+
+    public void addCreatureRight(Creature creature, Creature target) {
+        int index = Math.min(creatures.indexOf(target) + 1, creatures.size() - 1);
+        addCreature(creature, index);
     }
 
     public Player getPlayer() {

@@ -2,7 +2,7 @@ package org.tokiru;
 
 import org.tokiru.core.Game;
 import org.tokiru.core.card.Card;
-import org.tokiru.core.card.SkeletonDeck;
+import org.tokiru.core.deck.SkeletonDeck;
 import org.tokiru.core.hero.Mage;
 import org.tokiru.core.hero.Paladin;
 import org.tokiru.core.player.SkeletonPlayer;

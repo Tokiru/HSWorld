@@ -2,8 +2,8 @@ package org.tokiru.core.player;
 
 import org.tokiru.core.board.BoardState;
 import org.tokiru.core.card.Card;
-import org.tokiru.core.card.Deck;
-import org.tokiru.core.card.SkeletonDeck;
+import org.tokiru.core.deck.Deck;
+import org.tokiru.core.deck.SkeletonDeck;
 import org.tokiru.core.hero.Hero;
 import org.tokiru.core.hero.HeroClass;
 import org.tokiru.core.hero.Hunter;

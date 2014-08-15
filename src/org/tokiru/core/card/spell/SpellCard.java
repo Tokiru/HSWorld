@@ -2,7 +2,7 @@ package org.tokiru.core.card.spell;
 
 import org.tokiru.core.board.BoardState;
 import org.tokiru.core.card.Card;
-import org.tokiru.core.card.creature.Creature;
+import org.tokiru.core.creature.Creature;
 import org.tokiru.core.event.EventManager;
 
 /**

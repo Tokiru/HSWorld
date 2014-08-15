@@ -1,8 +1,9 @@
 package org.tokiru.core.board;
 
-import org.tokiru.core.card.Deck;
+import org.tokiru.core.deck.Deck;
 import org.tokiru.core.card.Hand;
-import org.tokiru.core.card.creature.Creature;
+import org.tokiru.core.creature.Creature;
+import org.tokiru.core.event.EventManager;
 import org.tokiru.core.hero.Hero;
 import org.tokiru.core.player.Player;
 
@@ -16,6 +17,16 @@ public class BoardState {
     private List<PlayerState> playerStates;
     private int MAGIC = 1000;
     private int turnCount;
+
+    public EventManager getEventManager() {
+        return eventManager;
+    }
+
+    public void setEventManager(EventManager eventManager) {
+        this.eventManager = eventManager;
+    }
+
+    private EventManager eventManager;
 
     public BoardState() {
         playerStates = new ArrayList<>();
@@ -52,10 +63,19 @@ public class BoardState {
 
     public void addCreature(Creature creature, int index, int playerID) {
         playerStates.get(playerID).addCreature(creature, index);
+        creature.spawn(playerStates.get(playerID).getPlayer(), this, eventManager);
     }
 
     public void addCreature(Creature creature, int playerID) {
         playerStates.get(playerID).addCreature(creature);
+    }
+
+    public void addCreatureLeft(Creature creature, Creature target, int playerID) {
+        playerStates.get(playerID).addCreatureLeft(creature, target);
+    }
+
+    public void addCreatureRight(Creature creature, Creature target, int playerID) {
+        playerStates.get(playerID).addCreatureRight(creature, target);
     }
 
     public void removeCreature(Creature creature) {
