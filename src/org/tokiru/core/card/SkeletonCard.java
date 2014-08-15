@@ -1,7 +1,5 @@
 package org.tokiru.core.card;
 
-import org.tokiru.core.card.creature.Creature;
-
 /**
  * Created by tokiru.
  */

@@ -21,8 +21,8 @@ public class SkeletonCreature implements Creature, Subscriber {
     protected int spellDamage;
     protected boolean windFurry;
 
-    private int numberOfAttacksThisTurn;
-    private int maxNumberOfAttacks;
+    protected int numberOfAttacksThisTurn;
+    protected int maxNumberOfAttacks;
     private boolean firstTurn;
     private int maxHealth;
 
