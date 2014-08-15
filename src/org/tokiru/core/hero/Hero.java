@@ -13,11 +13,13 @@ public class Hero extends SkeletonCreature implements Creature, Subscriber {
 
     private HeroClass heroClass;
     private Weapon weapon;
+    private int armor;
 
     public Hero(HeroClass heroClass) {
         super(30, 0, heroClass.getName());
         this.heroClass = heroClass;
         charge = true;
+        armor = 0;
     }
 
     @Override
@@ -53,11 +55,32 @@ public class Hero extends SkeletonCreature implements Creature, Subscriber {
             this.weapon = null;
         }
     }
+    public void addArmor(int value) {
+        armor = Math.min(0, armor + value);
+    }
 
-    /*@Override
-    public String getName() {
-        return "Rexxar";
-    }*/
+    public int getArmor() {
+        return armor;
+    }
+
+    public void takeDamage(int damage, boolean ignoreArmor) {
+        if (ignoreArmor) {
+            super.takeDamage(damage);
+        } else {
+            if (damage > armor) {
+                damage -= armor;
+                armor = 0;
+                super.takeDamage(damage);
+            } else {
+                armor -= damage;
+            }
+        }
+    }
+
+    @Override
+    public void takeDamage(int damage) {
+        takeDamage(damage, false);
+    }
 
     @Override
     public String toString() {
@@ -67,6 +90,6 @@ public class Hero extends SkeletonCreature implements Creature, Subscriber {
         } else {
             s = "none";
         }
-        return getName() + " health = " + health + " weapon = " + s;
+        return getName() + " health = " + health + "armor = " + armor + " weapon = " + s;
     }
 }
