@@ -12,6 +12,7 @@ import org.tokiru.core.card.spell.weapon.WeaponCard;
 import org.tokiru.core.event.EndTurnEvent;
 import org.tokiru.core.event.EventManager;
 import org.tokiru.core.event.SummonMinionEvent;
+import org.tokiru.core.hero.Hero;
 import org.tokiru.core.player.Player;
 import org.tokiru.core.turn.AttackTurn;
 import org.tokiru.core.turn.PlayCardTurn;

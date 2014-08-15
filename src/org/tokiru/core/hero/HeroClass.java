@@ -1,4 +1,4 @@
-package org.tokiru.core;
+package org.tokiru.core.hero;
 
 /**
  * Created by tokiru.

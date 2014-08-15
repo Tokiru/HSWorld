@@ -1,4 +1,4 @@
-package org.tokiru.core;
+package org.tokiru.core.hero;
 
 import org.tokiru.core.card.creature.Creature;
 import org.tokiru.core.card.creature.SkeletonCreature;
