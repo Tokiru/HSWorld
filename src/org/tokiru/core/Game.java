@@ -157,11 +157,7 @@ public class Game {
 
         state = State.OVER;
     }
-
-    private void addHeroPower(int currentPlayerID) {
-        Card heroAbility = boardState.getHero(currentPlayerID).getHeroClass().getAbilityCard();
-    }
-
+    
     public BoardState getBoardState() {
         return boardState;
     }
