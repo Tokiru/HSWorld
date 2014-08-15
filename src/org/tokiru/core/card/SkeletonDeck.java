@@ -22,8 +22,8 @@ public class SkeletonDeck implements Deck {
         cardCounter = 0;
 
         cards.add(WeaponFactory.arcaniteRapierCard());
-        cards.add(new MinionBuilder().setAttack(2).setHealth(1).charge().setName("charger").setCost(2).getCard());
-        cards.add(new MinionBuilder().setAttack(0).setHealth(10).taunt().setName("taunt").setCost(3).getCard());
+        cards.add(new MinionBuilder().setAttack(2).setHealth(1).charge().setName("charger").setCost(2).compile().getCard());
+        cards.add(new MinionBuilder().setAttack(0).setHealth(10).taunt().setName("taunt").setCost(3).compile().getCard());
 
         cards.add(new Flamestrike());
 

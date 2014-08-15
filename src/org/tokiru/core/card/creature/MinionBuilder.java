@@ -14,6 +14,9 @@ public class MinionBuilder {
     private boolean windFurry;
     private String name;
     private Creature.Race race;
+    private boolean targetImmune;
+
+    private SkeletonCreature creature;
 
     public MinionBuilder() {
 
@@ -69,8 +72,12 @@ public class MinionBuilder {
         return this;
     }
 
-    public MinionCard getCard() {
-        SkeletonCreature creature = new SkeletonCreature();
+    public MinionBuilder targetImmune() {
+        this.targetImmune = true;
+        return this;
+    }
+
+    public MinionBuilder compile() {
         creature.name = name;
         creature.attack = attack;
         creature.health = health;
@@ -80,7 +87,15 @@ public class MinionBuilder {
         creature.spellDamage = spellDamage;
         creature.windFurry = windFurry;
         creature.race = race;
-        return new MinionCard(cost, creature);
+        creature.targetImmune = true;
+        return this;
     }
 
+    public Creature getCreature() {
+        return creature;
+    }
+
+    public MinionCard getCard() {
+        return new MinionCard(cost, creature);
+    }
 }
