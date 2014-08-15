@@ -27,6 +27,10 @@ public class MinionCard implements Card {
         this.cost = cost;
     }
 
+    public MinionCard(SkeletonCreature creature) {
+        this(creature.getCost(), creature);
+    }
+
     @Override
     public int getCost() {
         return cost;
@@ -49,7 +53,7 @@ public class MinionCard implements Card {
 
     @Override
     public boolean canPlay(Creature target, BoardState boardState) {
-        return target == null;
+        return this.creature.canTarget(target, boardState);
     }
 
     public Creature getCreature() {

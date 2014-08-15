@@ -61,24 +61,24 @@ public class BoardState {
         return playerStates.get(playerID).getHand();
     }
 
-    public void addCreature(Creature creature, int index, int playerID) {
+    public void addCreature(Creature creature, Creature target, int index, int playerID) {
         playerStates.get(playerID).addCreature(creature, index);
-        creature.spawn(playerStates.get(playerID).getPlayer(), this, eventManager);
+        creature.spawn(playerStates.get(playerID).getPlayer(), this, eventManager, target);
     }
 
-    public void addCreature(Creature creature, int playerID) {
+    public void addCreature(Creature creature, Creature target, int playerID) {
         playerStates.get(playerID).addCreature(creature);
-        creature.spawn(playerStates.get(playerID).getPlayer(), this, eventManager);
+        creature.spawn(playerStates.get(playerID).getPlayer(), this, eventManager, target);
     }
 
-    public void addCreatureLeft(Creature creature, Creature target, int playerID) {
-        playerStates.get(playerID).addCreatureLeft(creature, target);
-        creature.spawn(playerStates.get(playerID).getPlayer(), this, eventManager);
+    public void addCreatureLeft(Creature creature, Creature base, Creature target, int playerID) {
+        playerStates.get(playerID).addCreatureLeft(creature, base);
+        creature.spawn(playerStates.get(playerID).getPlayer(), this, eventManager, target);
     }
 
-    public void addCreatureRight(Creature creature, Creature target, int playerID) {
-        playerStates.get(playerID).addCreatureRight(creature, target);
-        creature.spawn(playerStates.get(playerID).getPlayer(), this, eventManager);
+    public void addCreatureRight(Creature creature, Creature base, Creature target, int playerID) {
+        playerStates.get(playerID).addCreatureRight(creature, base);
+        creature.spawn(playerStates.get(playerID).getPlayer(), this, eventManager, target);
     }
 
     public void removeCreature(Creature creature) {

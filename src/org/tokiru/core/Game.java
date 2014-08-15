@@ -55,7 +55,7 @@ public class Game {
         for (int playerID = 0; playerID < players.size(); playerID++) {
             boardState.setPlayer(players.get(playerID));
             boardState.setHero(players.get(playerID).getHero(), playerID);
-            players.get(playerID).getHero().spawn(players.get(playerID), boardState, eventManager);
+            players.get(playerID).getHero().spawn(players.get(playerID), boardState, eventManager, null);
             boardState.setDeck(players.get(playerID).getDeck(), playerID);
         }
 
@@ -124,21 +124,25 @@ public class Game {
                     } else {
                         target = boardState.getByID(playCardTurn.getTargetID());
                     }
-                    Card cardToPlay = boardState.getHand(currentPlayerID).play(playCardTurn.getCardID());
-                    if (boardState.spendMana(cardToPlay.getCost(), currentPlayerID)) {
-                        if (cardToPlay.getType() == Card.CardType.MINION) {
-                            MinionCard minionCard = (MinionCard) cardToPlay;
-                            Creature creature = minionCard.getCreature();
-                            boardState.addCreature(creature, currentPlayerID);
-                        } else if (cardToPlay.getType() == Card.CardType.SPELL) {
-                            SpellCard spellCard = (SpellCard) cardToPlay;
-                            spellCard.play(target, boardState, eventManager, currentPlayerID, boardState.getSpellDamage(currentPlayerID));
-                        } else if (cardToPlay.getType() == Card.CardType.WEAPON) {
-                            WeaponCard weaponCard = (WeaponCard) cardToPlay;
-                            weaponCard.play(boardState.getHero(currentPlayerID), boardState, eventManager);
-                        }
+                    Card cardToPlay = boardState.getHand(currentPlayerID).play(playCardTurn.getCardID(), target, boardState);
+                    if (cardToPlay == null) {
+                        System.out.println("card can't be played on this target");
                     } else {
-                        System.out.println("not enough mana");
+                        if (boardState.spendMana(cardToPlay.getCost(), currentPlayerID)) {
+                            if (cardToPlay.getType() == Card.CardType.MINION) {
+                                MinionCard minionCard = (MinionCard) cardToPlay;
+                                Creature creature = minionCard.getCreature();
+                                boardState.addCreature(creature, target, currentPlayerID);
+                            } else if (cardToPlay.getType() == Card.CardType.SPELL) {
+                                SpellCard spellCard = (SpellCard) cardToPlay;
+                                spellCard.play(target, boardState, eventManager, currentPlayerID, boardState.getSpellDamage(currentPlayerID));
+                            } else if (cardToPlay.getType() == Card.CardType.WEAPON) {
+                                WeaponCard weaponCard = (WeaponCard) cardToPlay;
+                                weaponCard.play(boardState.getHero(currentPlayerID), boardState, eventManager);
+                            }
+                        } else {
+                            System.out.println("not enough mana");
+                        }
                     }
                 } else if (type == Turn.TurnType.CONCEDE) {
                     boardState.getHero(currentPlayerID).destroy();
@@ -147,7 +151,6 @@ public class Game {
             }
 
             eventManager.send(new EndTurnEvent());
-
             boardState.endTurn();
             currentPlayerID = 1 - currentPlayerID;
         }

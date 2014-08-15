@@ -1,5 +1,7 @@
 package org.tokiru.core.card;
 
+import org.tokiru.core.board.BoardState;
+import org.tokiru.core.creature.Creature;
 import org.tokiru.core.event.Event;
 import org.tokiru.core.event.Subscriber;
 import org.tokiru.core.hero.HeroClass;
@@ -29,13 +31,22 @@ public class Hand implements Subscriber {
         this.cards.addAll(cards.stream().collect(Collectors.toList()));
     }
 
-    public Card play(int cardIndex) {
+    public Card play(int cardIndex, Creature target, BoardState boardState) {
+        Card result;
         if (cardIndex == ABILITY_CARD_ID) {
-            Card result = abilityCard;
+            result = abilityCard;
+        } else {
+            result = cards.get(cardIndex);
+        }
+
+        if (!result.canPlay(target, boardState)) {
+            return null;
+        }
+
+        if (cardIndex == ABILITY_CARD_ID) {
             abilityCard = null;
             return result;
         } else {
-            Card result = cards.get(cardIndex);
             cards.remove(cardIndex);
             return result;
         }

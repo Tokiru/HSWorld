@@ -21,8 +21,8 @@ public class KnifeJuggler extends SkeletonCreature implements Creature {
     }
 
     @Override
-    public void spawn(Player owner, BoardState boardState, EventManager eventManager) {
-        super.spawn(owner, boardState, eventManager);
+    public void spawn(Player owner, BoardState boardState, EventManager eventManager, Creature target) {
+        super.spawn(owner, boardState, eventManager, null);
         eventManager.subscribe(this, Event.EventType.SUMMON_MINION);
     }
 

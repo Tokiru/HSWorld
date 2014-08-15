@@ -154,7 +154,7 @@ public class PlayerState {
         StringBuilder sb = new StringBuilder("PlayerState\n");
         sb.append(hero.toString());
         sb.append("\n");
-        sb.append("board\n");
+        sb.append("board");
         sb.append("{");
         for (Creature creature : creatures) {
             sb.append("[");
@@ -163,7 +163,7 @@ public class PlayerState {
         }
         sb.append("}\n");
 
-        sb.append("hand\n");
+        sb.append("hand");
         sb.append(hand);
         sb.append("\n");
 

@@ -6,6 +6,7 @@ import org.tokiru.core.card.creature.neutral.MinionFactory;
 import org.tokiru.core.card.spell.mage.Flamestrike;
 import org.tokiru.core.card.spell.paladin.BlessingOfKings;
 import org.tokiru.core.creature.MinionBuilder;
+import org.tokiru.core.creature.neutral.DarkIronDwarf;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -23,6 +24,7 @@ public class SkeletonDeck implements Deck {
         cards = new ArrayList<>();
         cardCounter = 0;
 
+        cards.add(new MinionCard(new DarkIronDwarf()));
         cards.add(new BlessingOfKings());
         cards.add(new BlessingOfKings());
         cards.add(MinionFactory.harvestGolemCard());

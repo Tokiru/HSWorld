@@ -15,6 +15,6 @@ public class HarvestGolem extends SkeletonCreature implements Creature {
     @Override
     protected void deathRattle() {
         Creature damagedGolem = new MinionBuilder("Damaged golem", 2, 1).getCreature();
-        boardState.addCreatureRight(damagedGolem, this, owner.getID());
+        boardState.addCreatureRight(damagedGolem, this, null, owner.getID());
     }
 }

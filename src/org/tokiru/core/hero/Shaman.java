@@ -50,7 +50,7 @@ public class Shaman implements HeroClass {
                 totem = new MinionBuilder().setHealth(1).setAttack(1).setName("Searing totem").compile().getCreature();
             }
 
-            boardState.addCreature(totem, playerID);
+            boardState.addCreature(totem, null, playerID);
         }
 
         private class HealingTotem extends SkeletonCreature implements Creature {

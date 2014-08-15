@@ -36,7 +36,14 @@ public class SkeletonCreature implements Creature {
     protected Race race;
     protected boolean targetImmune;
 
+    protected int cost;
+
     protected BuffManager buffManager;
+
+    public SkeletonCreature(int health, int attack, String name, int cost) {
+        this(health, attack, name);
+        this.cost = cost;
+    }
 
     public SkeletonCreature(int health, int attack, String name) {
         this.health = health;
@@ -96,7 +103,7 @@ public class SkeletonCreature implements Creature {
     }
 
     @Override
-    public void spawn(Player owner, BoardState boardState, EventManager eventManager) {
+    public void spawn(Player owner, BoardState boardState, EventManager eventManager, Creature target) {
         this.boardState = boardState;
         this.eventManager = eventManager;
         this.owner = owner;
@@ -165,6 +172,11 @@ public class SkeletonCreature implements Creature {
     }
 
     @Override
+    public boolean canTarget(Creature target, BoardState boardState) {
+        return target == null;
+    }
+
+    @Override
     public int getSpellDamage() {
         return spellDamage;
     }
@@ -219,6 +231,10 @@ public class SkeletonCreature implements Creature {
             Buff buff =  ((BuffDisconnectEvent) (event)).buff;
             buffManager.discard(buff);
         }
+    }
+
+    public int getCost() {
+        return cost;
     }
 
     private class BuffManager {
