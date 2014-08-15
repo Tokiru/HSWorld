@@ -26,9 +26,4 @@ public class Flamestrike extends SkeletonSpellCard implements SpellCard {
             creature.takeDamage(4 + spellDamage);
         }
     }
-
-    @Override
-    public String getName() {
-        return name;
-    }
 }

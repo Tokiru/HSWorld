@@ -4,6 +4,7 @@ import org.tokiru.core.card.Deck;
 import org.tokiru.core.card.Hand;
 import org.tokiru.core.card.creature.Creature;
 import org.tokiru.core.hero.Hero;
+import org.tokiru.core.player.Player;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,7 @@ public class PlayerState {
     private int fartigue;
     private int manaCrystals;
     private int currentMana;
+    private Player player;
 
     public PlayerState() {
         creatures = new ArrayList<>();
@@ -60,6 +62,14 @@ public class PlayerState {
 
     public void addCreature(Creature creature) {
         creatures.add(creature);
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 
     public Creature getByID(int id) {

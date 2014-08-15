@@ -10,6 +10,7 @@ import org.tokiru.core.card.spell.SpellCard;
 import org.tokiru.core.card.spell.neutral.Coin;
 import org.tokiru.core.card.spell.weapon.WeaponCard;
 import org.tokiru.core.event.EndTurnEvent;
+import org.tokiru.core.event.Event;
 import org.tokiru.core.event.EventManager;
 import org.tokiru.core.hero.Hero;
 import org.tokiru.core.player.Player;
@@ -51,6 +52,7 @@ public class Game {
         state = State.RUNNING;
         boardState = new BoardState();
         for (int playerID = 0; playerID < players.size(); playerID++) {
+            boardState.setPlayer(players.get(playerID));
             boardState.setHero(players.get(playerID).getHero(), playerID);
             players.get(playerID).getHero().spawn(players.get(playerID), boardState, eventManager);
             boardState.setDeck(players.get(playerID).getDeck(), playerID);
@@ -62,7 +64,8 @@ public class Game {
             List<Card> mulliganCards = deck.mulliganPhase1(playerID + 3);
             List<Boolean> acceptedCards = players.get(playerID).mulligan(mulliganCards);
             List<Card> handList = deck.mulliganPhase2(acceptedCards);
-            boardState.setHand(new Hand(handList), playerID);
+            boardState.setHand(new Hand(handList, boardState.getHero(playerID).getHeroClass()), playerID);
+            eventManager.subscribe(boardState.getHand(playerID), Event.EventType.END_TURN);
         }
         boardState.getHand(1).accept(new Coin());
     }
@@ -73,6 +76,9 @@ public class Game {
         int currentPlayerID = 0;
         while (!boardState.gameOver()) {
             System.out.println(currentPlayerID + " turn!");
+
+            //
+            addHeroPower(currentPlayerID);
 
             // draw card
             Card newCard = boardState.getDeck(currentPlayerID).dealCard();
@@ -114,6 +120,12 @@ public class Game {
 
                 } else if (type == Turn.TurnType.PLAY_CARD) {
                     PlayCardTurn playCardTurn = (PlayCardTurn) turn;
+                    Creature target;
+                    if (playCardTurn.getTargetID() == -1) {
+                        target = null;
+                    } else {
+                        target = boardState.getByID(playCardTurn.getTargetID());
+                    }
                     Card cardToPlay = boardState.getHand(currentPlayerID).play(playCardTurn.getCardID());
                     if (boardState.spendMana(cardToPlay.getCost(), currentPlayerID)) {
                         if (cardToPlay.getType() == Card.CardType.MINION) {
@@ -122,9 +134,8 @@ public class Game {
                             boardState.addCreature(creature, currentPlayerID);
                             creature.spawn(players.get(currentPlayerID), boardState, eventManager);
                         } else if (cardToPlay.getType() == Card.CardType.SPELL) {
-                            // ToDo use target
                             SpellCard spellCard = (SpellCard) cardToPlay;
-                            spellCard.play(null, boardState, eventManager, currentPlayerID, boardState.getSpellDamage(currentPlayerID));
+                            spellCard.play(target, boardState, eventManager, currentPlayerID, boardState.getSpellDamage(currentPlayerID));
                         } else if (cardToPlay.getType() == Card.CardType.WEAPON) {
                             WeaponCard weaponCard = (WeaponCard) cardToPlay;
                             weaponCard.play(boardState.getHero(currentPlayerID), boardState, eventManager);
@@ -140,10 +151,15 @@ public class Game {
 
             eventManager.send(new EndTurnEvent());
 
+            boardState.endTurn();
             currentPlayerID = 1 - currentPlayerID;
         }
 
         state = State.OVER;
+    }
+
+    private void addHeroPower(int currentPlayerID) {
+        Card heroAbility = boardState.getHero(currentPlayerID).getHeroClass().getAbilityCard();
     }
 
     public BoardState getBoardState() {

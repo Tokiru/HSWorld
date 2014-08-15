@@ -4,6 +4,7 @@ import org.tokiru.core.card.Deck;
 import org.tokiru.core.card.Hand;
 import org.tokiru.core.card.creature.Creature;
 import org.tokiru.core.hero.Hero;
+import org.tokiru.core.player.Player;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -104,6 +105,14 @@ public class BoardState {
 
     public void addMana(int count, int playerID) {
         playerStates.get(playerID).addMana(count);
+    }
+
+    public void setPlayer(Player player) {
+        playerStates.get(player.getID()).setPlayer(player);
+    }
+
+    public Player getPlayer(int playerID) {
+        return playerStates.get(playerID).getPlayer();
     }
 
     public boolean gameOver() {

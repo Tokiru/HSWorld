@@ -78,6 +78,10 @@ public class Hero extends SkeletonCreature implements Creature, Subscriber {
         }
     }
 
+    public HeroClass getHeroClass() {
+        return heroClass;
+    }
+
     @Override
     public void takeDamage(int damage) {
         takeDamage(damage, false);

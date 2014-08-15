@@ -35,7 +35,9 @@ public class Paladin implements HeroClass {
 
         @Override
         public void play(Creature target, BoardState boardState, EventManager eventManager, int playerID, int spellDamage) {
-            boardState.addCreature(new MinionBuilder().setHealth(1).setAttack(1).setName("Silverhand Recruit").compile().getCreature(), playerID);
+            Creature creature = new MinionBuilder().setHealth(1).setAttack(1).setName("Silverhand Recruit").compile().getCreature();
+            boardState.addCreature(creature, playerID);
+            creature.spawn(boardState.getPlayer(playerID), boardState, eventManager);
         }
     }
 }
