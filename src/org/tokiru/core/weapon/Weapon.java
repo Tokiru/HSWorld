@@ -39,7 +39,7 @@ public class Weapon {
         this(null);
     }
 
-    public void setEviroment(Hero owner, BoardState boardState, EventManager eventManager) {
+    public void setEnvironment(Hero owner, BoardState boardState, EventManager eventManager) {
         this.owner = owner;
         this.boardState = boardState;
         this.eventManager = eventManager;
