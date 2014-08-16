@@ -29,7 +29,8 @@ public class NeighbourAuraBuff extends AuraBuff implements Buff {
         applyBuff();
     }
 
-    private void applyBuff() {
+    @Override
+    protected void applyBuff() {
         List<Creature> neighbours = boardState.getNeighbours(creature);
         for (Creature neighbour : neighbours) {
             neighbour.accept(innerBuff);

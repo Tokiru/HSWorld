@@ -39,7 +39,7 @@ public class AuraBuff extends SkeletonBuff implements Buff {
         applyBuff();
     }
 
-    private void applyBuff() {
+    protected void applyBuff() {
         for (Creature creature1 : boardState.getFriendlyMinions(creature.getOwner().getID())) {
             if (creature1 != creature) {
                 creature1.accept(innerBuff);
