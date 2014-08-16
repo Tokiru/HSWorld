@@ -5,10 +5,12 @@ import org.tokiru.core.card.creature.MinionCard;
 import org.tokiru.core.card.creature.neutral.MinionFactory;
 import org.tokiru.core.card.spell.mage.Flamestrike;
 import org.tokiru.core.card.spell.paladin.BlessingOfKings;
+import org.tokiru.core.card.spell.shaman.Earthshock;
 import org.tokiru.core.creature.MinionBuilder;
 import org.tokiru.core.creature.neutral.DarkIronDwarf;
 import org.tokiru.core.creature.neutral.DireWolfAlpha;
 import org.tokiru.core.creature.neutral.RaidLeader;
+import org.tokiru.core.creature.neutral.TwilightDrake;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -26,6 +28,8 @@ public class SkeletonDeck implements Deck {
         cards = new ArrayList<>();
         cardCounter = 0;
 
+        cards.add(new MinionCard(new TwilightDrake()));
+        cards.add(new Earthshock());
         cards.add(new MinionCard(new DireWolfAlpha()));
         cards.add(new MinionCard(new RaidLeader()));
         cards.add(new MinionCard(new DarkIronDwarf()));

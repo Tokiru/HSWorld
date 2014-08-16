@@ -108,6 +108,7 @@ public class SkeletonCreature implements Creature {
         this.eventManager = eventManager;
         this.owner = owner;
         eventManager.subscribe(this, Event.EventType.END_TURN);
+        battleCry();
         eventManager.send(new SummonMinionEvent(this));
     }
 
@@ -120,7 +121,7 @@ public class SkeletonCreature implements Creature {
         deathRattle();
         eventManager.unsubscribe(this);
         eventManager.send(new MinionDieEvent(this));
-        buffManager.discardAll();
+        buffManager.discardAll(false);
     }
 
     protected void deathRattle() {
@@ -221,12 +222,26 @@ public class SkeletonCreature implements Creature {
 
     @Override
     public void setAttack(int value) {
-
+        attack = value;
     }
 
     @Override
     public void setHealth(int value) {
+        health = value;
+    }
 
+    @Override
+    public void silence() {
+        taunt = false;
+        divineShield = false;
+        charge = false;
+        spellDamage = 0;
+        windFurry = false;
+        maxNumberOfAttacks = 1;
+        race = Race.NONE; // ToDo check if silence actually rewoves race
+        targetImmune = false; // ToDo check as well
+
+        buffManager.discardAll(true);
     }
 
     @Override
@@ -307,8 +322,12 @@ public class SkeletonCreature implements Creature {
             }
         }
 
-        private void discardAll() {
-            for (Buff buff : buffList) {
+        private void discardAll(boolean unapply) {
+            List<Buff> buffListCopy = new ArrayList<>(buffList);
+            for (Buff buff : buffListCopy) {
+                if (unapply) {
+                    discard(buff);
+                }
                 buff.discard();
             }
             buffList.clear();
