@@ -7,6 +7,7 @@ import org.tokiru.core.card.spell.mage.Flamestrike;
 import org.tokiru.core.card.spell.paladin.BlessingOfKings;
 import org.tokiru.core.creature.MinionBuilder;
 import org.tokiru.core.creature.neutral.DarkIronDwarf;
+import org.tokiru.core.creature.neutral.DireWolfAlpha;
 import org.tokiru.core.creature.neutral.RaidLeader;
 
 import java.util.ArrayList;
@@ -25,6 +26,7 @@ public class SkeletonDeck implements Deck {
         cards = new ArrayList<>();
         cardCounter = 0;
 
+        cards.add(new MinionCard(new DireWolfAlpha()));
         cards.add(new MinionCard(new RaidLeader()));
         cards.add(new MinionCard(new DarkIronDwarf()));
         cards.add(new BlessingOfKings());

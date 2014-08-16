@@ -149,6 +149,22 @@ public class PlayerState {
         }
     }
 
+    public List<Creature> getNeighbours(Creature creature) {
+        List<Creature> result = new ArrayList<>();
+        int index = creatures.indexOf(creature);
+        if (index != -1) {
+            if (index > 0) {
+                result.add(creatures.get(index - 1));
+            }
+
+            if (index < creatures.size() - 1) {
+                result.add(creatures.get(index + 1));
+            }
+        }
+
+        return result;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("PlayerState\n");

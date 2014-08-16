@@ -4,10 +4,12 @@ import org.tokiru.core.board.BoardState;
 import org.tokiru.core.card.Card;
 import org.tokiru.core.card.Hand;
 import org.tokiru.core.card.creature.MinionCard;
+import org.tokiru.core.card.creature.neutral.MinionFactory;
 import org.tokiru.core.card.spell.SpellCard;
 import org.tokiru.core.card.spell.neutral.Coin;
 import org.tokiru.core.card.spell.weapon.WeaponCard;
 import org.tokiru.core.creature.Creature;
+import org.tokiru.core.creature.MinionBuilder;
 import org.tokiru.core.deck.Deck;
 import org.tokiru.core.event.EndTurnEvent;
 import org.tokiru.core.event.Event;
@@ -69,6 +71,10 @@ public class Game {
             eventManager.subscribe(boardState.getHand(playerID), Event.EventType.END_TURN);
         }
         boardState.getHand(1).accept(new Coin());
+
+        boardState.addCreature(new MinionBuilder("Wisp", 1, 1).getCreature(), null, 1);
+        boardState.addCreature(new MinionBuilder("Wisp", 1, 1).getCreature(), null, 1);
+        boardState.addCreature(new MinionBuilder("Wisp", 1, 1).getCreature(), null, 1);
     }
 
     public void begin() {

@@ -212,6 +212,10 @@ public class BoardState {
         return result;
     }
 
+    public List<Creature> getNeighbours(Creature creature) {
+        return playerStates.get(creature.getOwner().getID()).getNeighbours(creature);
+    }
+
     @Override
     public String toString() {
         return "board state\n" + playerStates.get(0).toString() + playerStates.get(1).toString();

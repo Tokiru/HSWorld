@@ -40,5 +40,11 @@ public class AuraBuff extends SkeletonBuff implements Buff {
         super.init(creature, boardState);
         boardState.getEventManager().subscribe(this, Event.EventType.MINION_DIE);
         boardState.getEventManager().subscribe(this, Event.EventType.SUMMON_MINION);
+
+        for (Creature creature1 : boardState.getFriendlyMinions(creature.getOwner().getID())) {
+            if (creature1 != creature) {
+                creature1.accept(innerBuff);
+            }
+        }
     }
 }
