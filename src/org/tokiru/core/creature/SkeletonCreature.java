@@ -220,6 +220,16 @@ public class SkeletonCreature implements Creature {
     }
 
     @Override
+    public void setAttack(int value) {
+
+    }
+
+    @Override
+    public void setHealth(int value) {
+
+    }
+
+    @Override
     public String toString() {
         return "name = " + name + " attack = " + attack + " health = " + health;
     }

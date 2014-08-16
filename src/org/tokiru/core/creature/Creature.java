@@ -50,6 +50,12 @@ public interface Creature extends Subscriber {
 
     void changeHealth(int value);
 
+    void setAttack(int value);
+
+    void setHealth(int value);
+
+    void silence();
+
     enum Race {
         NONE,
         BEAST,
