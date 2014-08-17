@@ -57,7 +57,7 @@ public class Hero extends SkeletonCreature implements Creature, Subscriber {
         }
     }
     public void addArmor(int value) {
-        armor = Math.min(0, armor + value);
+        armor = Math.max(0, armor + value);
     }
 
     public int getArmor() {

@@ -1,7 +1,7 @@
 package org.tokiru.core.hero;
 
 import org.tokiru.core.card.Card;
-import org.tokiru.core.card.spell.weapon.SkeletonWeaponCard;
+import org.tokiru.core.card.weapon.SkeletonWeaponCard;
 import org.tokiru.core.weapon.Weapon;
 
 /**

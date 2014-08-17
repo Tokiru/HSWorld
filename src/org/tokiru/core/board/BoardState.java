@@ -18,23 +18,24 @@ public class BoardState {
     private int MAGIC = 1000;
     private int turnCount;
 
+    private EventManager eventManager;
+
+    public BoardState() {
+        playerStates = new ArrayList<PlayerState>();
+        for (int i = 0; i < 2; i++) {
+            playerStates.add(new PlayerState());
+        }
+
+        turnCount = 0;
+
+    }
+
     public EventManager getEventManager() {
         return eventManager;
     }
 
     public void setEventManager(EventManager eventManager) {
         this.eventManager = eventManager;
-    }
-
-    private EventManager eventManager;
-
-    public BoardState() {
-        playerStates = new ArrayList<>();
-        for (int i = 0; i < 2; i++) {
-            playerStates.add(new PlayerState());
-        }
-
-        turnCount = 0;
     }
 
     public void setHero(Hero hero, int playerID) {
@@ -189,6 +190,10 @@ public class BoardState {
 
     public List<Creature> getEnemyCharacters(int playerID) {
         return getFriendlyCharacters(1 - playerID);
+    }
+
+    public PlayerState.SecretArray getSecretArray(int playerID) {
+        return playerStates.get(playerID).getSecretArray();
     }
 
     public int getPlayerID(Creature creature) {
