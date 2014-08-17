@@ -55,7 +55,7 @@ public class SkeletonCreature implements Creature {
             maxNumberOfAttacks++;
         }
 
-        buffManager = new BuffManager(this, boardState);
+        buffManager = new BuffManager(this);
     }
 
     public SkeletonCreature(int health, int attack) {
@@ -102,6 +102,7 @@ public class SkeletonCreature implements Creature {
     @Override
     public void spawn(Player owner, BoardState boardState, EventManager eventManager, Creature target) {
         this.boardState = boardState;
+        buffManager.setBoardState(boardState);
         this.eventManager = eventManager;
         this.owner = owner;
         eventManager.subscribe(this, Event.EventType.END_TURN);

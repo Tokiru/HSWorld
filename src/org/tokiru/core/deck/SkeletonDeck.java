@@ -4,6 +4,7 @@ import org.tokiru.core.card.Card;
 import org.tokiru.core.card.creature.MinionCard;
 import org.tokiru.core.card.creature.neutral.MinionFactory;
 import org.tokiru.core.card.secret.SkeletonSecretCard;
+import org.tokiru.core.card.spell.paladin.BlessingOfWisdom;
 import org.tokiru.core.secret.mage.IceBarrier;
 import org.tokiru.core.card.spell.mage.Flamestrike;
 import org.tokiru.core.card.spell.paladin.BlessingOfKings;
@@ -30,6 +31,7 @@ public class SkeletonDeck implements Deck {
         cards = new ArrayList<>();
         cardCounter = 0;
 
+        cards.add(new BlessingOfWisdom());
         cards.add(new MinionCard(new TwilightDrake()));
         cards.add(new Earthshock());
         cards.add(new MinionCard(new DireWolfAlpha()));

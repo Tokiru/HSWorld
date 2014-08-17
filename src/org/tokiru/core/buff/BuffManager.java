@@ -15,10 +15,9 @@ public class BuffManager {
     private Creature creature;
     private BoardState boardState;
 
-    public BuffManager(SkeletonCreature creature, BoardState boardState) {
+    public BuffManager(SkeletonCreature creature) {
         buffList = new ArrayList<>();
         this.creature = creature;
-        this.boardState = boardState;
     }
 
     public void accept(Buff buff) {
@@ -86,5 +85,9 @@ public class BuffManager {
 
     public void discard(Buff buff) {
         discard(buff, true);
+    }
+
+    public void setBoardState(BoardState boardState) {
+        this.boardState = boardState;
     }
 }
