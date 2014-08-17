@@ -6,7 +6,6 @@ import org.tokiru.core.secret.Secret;
  * Created by tokiru.
  */
 public class SecretPlayed implements Event {
-
     public Secret secret;
 
     public SecretPlayed(Secret secret) {
