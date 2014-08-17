@@ -4,13 +4,22 @@ import org.tokiru.core.board.BoardState;
 import org.tokiru.core.card.Card;
 import org.tokiru.core.card.Hand;
 import org.tokiru.core.card.creature.MinionCard;
+<<<<<<< HEAD
 import org.tokiru.core.card.creature.neutral.MinionFactory;
+=======
+import org.tokiru.core.card.secret.SecretCard;
+>>>>>>> secret
 import org.tokiru.core.card.spell.SpellCard;
 import org.tokiru.core.card.spell.neutral.Coin;
-import org.tokiru.core.card.spell.weapon.WeaponCard;
+import org.tokiru.core.card.weapon.WeaponCard;
 import org.tokiru.core.creature.Creature;
+<<<<<<< HEAD
 import org.tokiru.core.creature.MinionBuilder;
+=======
+import org.tokiru.core.creature.neutral.DarkIronDwarf;
+>>>>>>> secret
 import org.tokiru.core.deck.Deck;
+import org.tokiru.core.event.AttackEvent;
 import org.tokiru.core.event.EndTurnEvent;
 import org.tokiru.core.event.Event;
 import org.tokiru.core.event.EventManager;
@@ -72,6 +81,7 @@ public class Game {
         }
         boardState.getHand(1).accept(new Coin());
 
+
         boardState.addCreature(new MinionBuilder("Wisp", 1, 1).getCreature(), null, 1);
         boardState.addCreature(new MinionBuilder("Wisp", 1, 1).getCreature(), null, 1);
         boardState.addCreature(new MinionBuilder("Wisp", 1, 1).getCreature(), null, 1);
@@ -106,6 +116,9 @@ public class Game {
                     AttackTurn attackTurn = (AttackTurn) turn;
                     Creature attackCreature = boardState.getByID(attackTurn.getFromID());
                     Creature defenseCreature = boardState.getByID(attackTurn.getToID());
+
+                    eventManager.send(new AttackEvent(attackCreature, defenseCreature));
+
                     if (attackCreature.canAttack(defenseCreature)) {
                         attackCreature.hit(defenseCreature);
                         //noinspection StatementWithEmptyBody
@@ -117,6 +130,8 @@ public class Game {
                     } else {
                         System.out.println("minion can't attack!");
                     }
+
+
 
                     if (boardState.gameOver()) {
                         break;
@@ -145,6 +160,11 @@ public class Game {
                             } else if (cardToPlay.getType() == Card.CardType.WEAPON) {
                                 WeaponCard weaponCard = (WeaponCard) cardToPlay;
                                 weaponCard.play(boardState.getHero(currentPlayerID), boardState, eventManager);
+                            } else if (cardToPlay.getType() == Card.CardType.SECRET) {
+                                SecretCard secretCard = (SecretCard) cardToPlay;
+                                secretCard.play(players.get(currentPlayerID), boardState);
+                            } else {
+                                throw new UnsupportedOperationException();
                             }
                         } else {
                             System.out.println("not enough mana");

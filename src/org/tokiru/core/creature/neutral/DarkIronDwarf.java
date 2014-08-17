@@ -27,6 +27,6 @@ public class DarkIronDwarf extends TargetCreature implements Creature {
     }
 
     public DarkIronDwarf() {
-        super(4, 4, "Dark Iron Dwarf", 4);
+        super(4, 4, "Dark Iron Dwarf", 4, false);
     }
 }

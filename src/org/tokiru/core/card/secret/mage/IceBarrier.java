@@ -1,0 +1,30 @@
+package org.tokiru.core.card.secret.mage;
+
+import org.tokiru.core.board.BoardState;
+import org.tokiru.core.card.secret.SkeletonSecret;
+import org.tokiru.core.event.AttackEvent;
+import org.tokiru.core.event.Event;
+import org.tokiru.core.player.Player;
+import org.tokiru.core.secret.Secret;
+
+/**
+ * Created by tokiru.
+ */
+public class IceBarrier extends SkeletonSecret implements Secret {
+    @Override
+    public void play(Player owner, BoardState boardState) {
+        super.play(owner, boardState);
+        boardState.getEventManager().subscribe(this, Event.EventType.ATTACK);
+    }
+
+    @Override
+    public void accept(Event event) {
+        if (event.getType() == Event.EventType.ATTACK) {
+            AttackEvent attackEvent = (AttackEvent) event;
+            if (attackEvent.defender == owner.getHero()) {
+                boardState.getHero(owner.getID()).addArmor(8);
+                destroy();
+            }
+        }
+    }
+}

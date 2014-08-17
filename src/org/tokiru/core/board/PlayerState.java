@@ -5,6 +5,7 @@ import org.tokiru.core.creature.Creature;
 import org.tokiru.core.deck.Deck;
 import org.tokiru.core.hero.Hero;
 import org.tokiru.core.player.Player;
+import org.tokiru.core.secret.Secret;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,9 +23,11 @@ public class PlayerState {
     private int manaCrystals;
     private int currentMana;
     private Player player;
+    private SecretArray secretArray;
 
     public PlayerState() {
         creatures = new ArrayList<>();
+        secretArray = new SecretArray();
         fartigue = 0;
     }
 
@@ -170,7 +173,7 @@ public class PlayerState {
         StringBuilder sb = new StringBuilder("PlayerState\n");
         sb.append(hero.toString());
         sb.append("\n");
-        sb.append("board");
+        sb.append("board: ");
         sb.append("{");
         for (Creature creature : creatures) {
             sb.append("[");
@@ -179,9 +182,11 @@ public class PlayerState {
         }
         sb.append("}\n");
 
-        sb.append("hand");
+        sb.append("hand: ");
         sb.append(hand);
         sb.append("\n");
+
+        sb.append("secrets: ").append(secretArray).append("\n");
 
         sb.append("Mana max = ").append(manaCrystals).append(" current = ").append(currentMana).append("\n");
 
@@ -199,5 +204,39 @@ public class PlayerState {
         }
 
         return result;
+    }
+
+
+    public SecretArray getSecretArray() {
+        return secretArray;
+    }
+
+    public class SecretArray {
+        public SecretArray() {
+            secrets = new ArrayList<>();
+        }
+
+        public void clear() {
+            secrets.clear();
+        }
+
+        public void add(Secret secret) {
+            secrets.add(secret);
+        }
+
+        public void remove(Secret secret) {
+            secrets.remove(secret);
+        }
+
+        private List<Secret> secrets;
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            for (Secret secret : secrets) {
+                sb.append("[").append(secret).append("]");
+            }
+            return sb.toString();
+        }
     }
 }

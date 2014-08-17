@@ -14,6 +14,8 @@ public interface Event {
         SECRET_REVEALED,
         MINION_DIE,
 
+        SECRET_PLAYED,
+        ATTACK,
         BUFF_DISCONNECT
     }
 }
