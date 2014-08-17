@@ -1,10 +1,7 @@
 package org.tokiru.core.creature;
 
 import org.tokiru.core.board.BoardState;
-import org.tokiru.core.buff.AttackBuff;
-import org.tokiru.core.buff.Buff;
-import org.tokiru.core.buff.CombinationBuff;
-import org.tokiru.core.buff.HealthBuff;
+import org.tokiru.core.buff.*;
 import org.tokiru.core.event.*;
 import org.tokiru.core.player.Player;
 
@@ -58,7 +55,7 @@ public class SkeletonCreature implements Creature {
             maxNumberOfAttacks++;
         }
 
-        buffManager = new BuffManager();
+        buffManager = new BuffManager(this, boardState);
     }
 
     public SkeletonCreature(int health, int attack) {
@@ -218,6 +215,11 @@ public class SkeletonCreature implements Creature {
     @Override
     public void changeHealth(int value) {
         health = Math.max(0, value + health);
+        if (value > 0) {
+            maxHealth = Math.max(maxHealth, health);
+        } else {
+
+        }
     }
 
     @Override
@@ -262,82 +264,5 @@ public class SkeletonCreature implements Creature {
 
     public int getCost() {
         return cost;
-    }
-
-    private class BuffManager {
-        public BuffManager() {
-            buffList = new ArrayList<>();
-            this.creature = SkeletonCreature.this;
-        }
-
-        public void accept(Buff buff) {
-            if (buffList.contains(buff)) {
-                return ;
-            }
-            buffList.add(buff);
-            buff.init(creature, boardState);
-            apply(buff);
-        }
-
-        private void apply(Buff buff) {
-            buff = buff.getRaw();
-            if (buff instanceof AttackBuff) {
-                AttackBuff attackBuff = (AttackBuff) buff;
-                creature.changeAttack(attackBuff.attackBuff);
-            } else if (buff instanceof HealthBuff) {
-                HealthBuff healthBuff = (HealthBuff) buff;
-                creature.changeHealth(healthBuff.healthBuff);
-            } else if (buff instanceof CombinationBuff) {
-                CombinationBuff combinationBuff = (CombinationBuff) buff;
-                for (Buff buff1 : combinationBuff.buffList) {
-                    apply(buff1);
-                }
-            } else {
-                System.out.println("WARNING! buff isn't recognized");
-            }
-        }
-
-        private void discard(Buff buff, boolean f) {
-            if (!buffList.contains(buff)) {
-                return;
-            }
-
-            buff = buff.getRaw();
-            if (buff instanceof AttackBuff) {
-                AttackBuff attackBuff = (AttackBuff) buff;
-                creature.changeAttack(-attackBuff.attackBuff);
-            } else if (buff instanceof HealthBuff) {
-                HealthBuff healthBuff = (HealthBuff) buff;
-                creature.changeHealth(-healthBuff.healthBuff);
-            } else if (buff instanceof CombinationBuff) {
-                CombinationBuff combinationBuff = (CombinationBuff) buff;
-                for (Buff buff1 : combinationBuff.buffList) {
-                    discard(buff1, false);
-                }
-            }
-
-            if (f) {
-                buffList.remove(buff);
-                buff.discard();
-            }
-        }
-
-        private void discardAll(boolean unapply) {
-            List<Buff> buffListCopy = new ArrayList<>(buffList);
-            for (Buff buff : buffListCopy) {
-                if (unapply) {
-                    discard(buff);
-                }
-                buff.discard();
-            }
-            buffList.clear();
-        }
-
-        private void discard(Buff buff) {
-            discard(buff, true);
-        }
-
-        private List<Buff> buffList;
-        private Creature creature;
     }
 }
