@@ -9,5 +9,5 @@ import org.tokiru.core.hero.Hero;
  * Created by tokiru.
  */
 public interface WeaponCard extends Card {
-    void play(Hero owner, BoardState boardState, EventManager eventManager);
+    void play(Hero owner, BoardState boardState);
 }

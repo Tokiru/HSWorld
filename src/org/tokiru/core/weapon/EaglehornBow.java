@@ -2,7 +2,6 @@ package org.tokiru.core.weapon;
 
 import org.tokiru.core.board.BoardState;
 import org.tokiru.core.event.Event;
-import org.tokiru.core.event.EventManager;
 import org.tokiru.core.event.SecretRevealedEvent;
 import org.tokiru.core.event.Subscriber;
 import org.tokiru.core.hero.Hero;
@@ -18,8 +17,8 @@ public class EaglehornBow extends Weapon implements Subscriber {
 
 
     @Override
-    public void setEnvironment(Hero owner, BoardState boardState, EventManager eventManager) {
-        super.setEnvironment(owner, boardState, eventManager);
+    public void setEnvironment(Hero owner, BoardState boardState) {
+        super.setEnvironment(owner, boardState);
         eventManager.subscribe(this, Event.EventType.SECRET_REVEALED);
     }
 
