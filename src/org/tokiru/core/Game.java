@@ -4,20 +4,15 @@ import org.tokiru.core.board.BoardState;
 import org.tokiru.core.card.Card;
 import org.tokiru.core.card.Hand;
 import org.tokiru.core.card.creature.MinionCard;
-<<<<<<< HEAD
-import org.tokiru.core.card.creature.neutral.MinionFactory;
-=======
 import org.tokiru.core.card.secret.SecretCard;
->>>>>>> secret
 import org.tokiru.core.card.spell.SpellCard;
 import org.tokiru.core.card.spell.neutral.Coin;
 import org.tokiru.core.card.weapon.WeaponCard;
 import org.tokiru.core.creature.Creature;
-<<<<<<< HEAD
 import org.tokiru.core.creature.MinionBuilder;
-=======
-import org.tokiru.core.creature.neutral.DarkIronDwarf;
->>>>>>> secret
+
+
+
 import org.tokiru.core.deck.Deck;
 import org.tokiru.core.event.AttackEvent;
 import org.tokiru.core.event.EndTurnEvent;

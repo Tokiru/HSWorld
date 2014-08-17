@@ -24,9 +24,14 @@ public class Hero extends SkeletonCreature implements Creature, Subscriber {
 
     @Override
     public void hit(Creature creature) {
-        assert weapon.getAttack() > 0;
-        weapon.use(creature);
-        numberOfAttacksThisTurn++;
+        if (attack > 0) {
+            creature.takeDamage(attack);
+            this.takeDamage(creature.getAttack());
+        } else {
+            assert weapon.getAttack() > 0;
+            weapon.use(creature);
+            numberOfAttacksThisTurn++;
+        }
     }
 
     public void setWeapon(Weapon weapon) {
@@ -40,7 +45,7 @@ public class Hero extends SkeletonCreature implements Creature, Subscriber {
     @Override
     public boolean canAttack(Creature target) {
         //noinspection StatementWithEmptyBody
-        if (weapon != null && weapon.getAttack() > 0) {
+        if ((weapon != null && weapon.getAttack() > 0) || (attack > 0)) {
 
         } else {
             return false;

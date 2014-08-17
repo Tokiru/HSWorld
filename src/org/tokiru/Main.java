@@ -3,6 +3,7 @@ package org.tokiru;
 import org.tokiru.core.Game;
 import org.tokiru.core.card.Card;
 import org.tokiru.core.deck.SkeletonDeck;
+import org.tokiru.core.hero.Druid;
 import org.tokiru.core.hero.Mage;
 import org.tokiru.core.hero.Paladin;
 import org.tokiru.core.player.SkeletonPlayer;
@@ -14,7 +15,7 @@ public class Main {
 
     public static void main(String[] args) {
         Game game = new Game();
-        SkeletonPlayer player1 = new SkeletonPlayer(new Mage());
+        SkeletonPlayer player1 = new SkeletonPlayer(new Druid());
         SkeletonPlayer player2 = new SkeletonPlayer(new Paladin());
 
         game.registerPlayer(player1);
