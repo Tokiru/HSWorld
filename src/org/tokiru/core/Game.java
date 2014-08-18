@@ -10,11 +10,9 @@ import org.tokiru.core.card.spell.neutral.Coin;
 import org.tokiru.core.card.weapon.WeaponCard;
 import org.tokiru.core.creature.Creature;
 import org.tokiru.core.creature.MinionBuilder;
-
-
-
 import org.tokiru.core.deck.Deck;
 import org.tokiru.core.event.AttackEvent;
+import org.tokiru.core.event.CardPlayedEvent;
 import org.tokiru.core.event.EndTurnEvent;
 import org.tokiru.core.event.Event;
 import org.tokiru.core.event.EventManager;
@@ -144,6 +142,7 @@ public class Game {
                     if (cardToPlay == null) {
                         System.out.println("card can't be played on this target");
                     } else {
+                        eventManager.send(new CardPlayedEvent(cardToPlay));
                         if (boardState.spendMana(cardToPlay.getCost(), currentPlayerID)) {
                             if (cardToPlay.getType() == Card.CardType.MINION) {
                                 MinionCard minionCard = (MinionCard) cardToPlay;
