@@ -93,6 +93,10 @@ public class Game {
                 boardState.dealFartigueDamage(currentPlayerID);
             } else {
                 boardState.getHand(currentPlayerID).accept(newCard);
+                if (newCard instanceof SpellCard) {
+                    SpellCard spellCard = (SpellCard) newCard;
+                    spellCard.init(boardState);
+                }
             }
 
             // add mana crystal
@@ -123,8 +127,6 @@ public class Game {
                     } else {
                         System.out.println("minion can't attack!");
                     }
-
-
 
                     if (boardState.gameOver()) {
                         break;

@@ -17,6 +17,10 @@ public abstract class NonTargetSpellCard extends SkeletonSpellCard implements Sp
 
     @Override
     public boolean canPlay(Creature target, BoardState boardState) {
+        return canNonTargetSpellPlay(target, boardState);
+    }
+
+    public static boolean canNonTargetSpellPlay(Creature target, BoardState boardState) {
         return target == null;
     }
 }

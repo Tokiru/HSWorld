@@ -1,5 +1,6 @@
 package org.tokiru.core.card.spell;
 
+import org.tokiru.core.board.BoardState;
 import org.tokiru.core.card.SkeletonCard;
 
 /**
@@ -17,5 +18,10 @@ public abstract class SkeletonSpellCard extends SkeletonCard implements SpellCar
     @Override
     public CardType getType() {
         return CardType.SPELL;
+    }
+
+    @Override
+    public void init(BoardState boardState) {
+
     }
 }

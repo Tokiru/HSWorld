@@ -13,7 +13,6 @@ public interface Event {
         WEAPON_DESTROY,
         SECRET_REVEALED,
         MINION_DIE,
-        SECRET_PLAYED,
         CARD_PLAYED,
 
         SECRET_PLAYED,

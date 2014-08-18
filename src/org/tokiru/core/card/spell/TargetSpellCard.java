@@ -23,6 +23,10 @@ public abstract class TargetSpellCard extends SkeletonSpellCard implements Spell
 
     @Override
     public boolean canPlay(Creature target, BoardState boardState) {
+        return canTargetSpellPlay(target, boardState);
+    }
+
+    public static boolean canTargetSpellPlay(Creature target, BoardState boardState) {
         return target != null && !target.isTargetImmune();
     }
 }
