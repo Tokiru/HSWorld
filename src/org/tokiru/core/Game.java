@@ -155,7 +155,7 @@ public class Game {
                                 spellCard.play(target, boardState, eventManager, currentPlayerID, boardState.getSpellDamage(currentPlayerID));
                             } else if (cardToPlay.getType() == Card.CardType.WEAPON) {
                                 WeaponCard weaponCard = (WeaponCard) cardToPlay;
-                                weaponCard.play(boardState.getHero(currentPlayerID), boardState, eventManager);
+                                weaponCard.play(boardState.getHero(currentPlayerID), boardState);
                             } else if (cardToPlay.getType() == Card.CardType.SECRET) {
                                 SecretCard secretCard = (SecretCard) cardToPlay;
                                 secretCard.play(players.get(currentPlayerID), boardState);

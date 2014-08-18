@@ -4,7 +4,11 @@ import org.tokiru.core.card.Card;
 import org.tokiru.core.card.creature.MinionCard;
 import org.tokiru.core.card.creature.neutral.MinionFactory;
 import org.tokiru.core.card.secret.SkeletonSecretCard;
+<<<<<<< HEAD
 import org.tokiru.core.card.spell.rogue.Eviscerate;
+=======
+import org.tokiru.core.card.spell.paladin.BlessingOfWisdom;
+>>>>>>> buff
 import org.tokiru.core.secret.mage.IceBarrier;
 import org.tokiru.core.card.spell.mage.Flamestrike;
 import org.tokiru.core.card.spell.paladin.BlessingOfKings;
@@ -32,6 +36,7 @@ public class SkeletonDeck implements Deck {
         cardCounter = 0;
 
         cards.add(new Eviscerate());
+        cards.add(new BlessingOfWisdom());
         cards.add(new MinionCard(new TwilightDrake()));
         cards.add(new Earthshock());
         cards.add(new MinionCard(new DireWolfAlpha()));

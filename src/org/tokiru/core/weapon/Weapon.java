@@ -39,10 +39,10 @@ public class Weapon {
         this(null);
     }
 
-    public void setEnvironment(Hero owner, BoardState boardState, EventManager eventManager) {
+    public void setEnvironment(Hero owner, BoardState boardState) {
         this.owner = owner;
         this.boardState = boardState;
-        this.eventManager = eventManager;
+        this.eventManager = boardState.getEventManager();
     }
 
     public void use(Creature target) {
