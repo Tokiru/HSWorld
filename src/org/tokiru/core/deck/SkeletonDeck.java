@@ -4,11 +4,8 @@ import org.tokiru.core.card.Card;
 import org.tokiru.core.card.creature.MinionCard;
 import org.tokiru.core.card.creature.neutral.MinionFactory;
 import org.tokiru.core.card.secret.SkeletonSecretCard;
-<<<<<<< HEAD
 import org.tokiru.core.card.spell.rogue.Eviscerate;
-=======
 import org.tokiru.core.card.spell.paladin.BlessingOfWisdom;
->>>>>>> buff
 import org.tokiru.core.secret.mage.IceBarrier;
 import org.tokiru.core.card.spell.mage.Flamestrike;
 import org.tokiru.core.card.spell.paladin.BlessingOfKings;
