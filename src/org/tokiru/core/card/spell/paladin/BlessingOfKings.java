@@ -2,11 +2,9 @@ package org.tokiru.core.card.spell.paladin;
 
 import org.tokiru.core.board.BoardState;
 import org.tokiru.core.buff.OneTurnAttackBuff;
-import org.tokiru.core.buff.OneTurnBuff;
 import org.tokiru.core.card.spell.SpellCard;
 import org.tokiru.core.card.spell.TargetSpellCard;
 import org.tokiru.core.creature.Creature;
-import org.tokiru.core.event.EventManager;
 
 /**
  * Created by tokiru.
@@ -19,7 +17,7 @@ public class BlessingOfKings extends TargetSpellCard implements SpellCard {
     }
 
     @Override
-    public void play(Creature target, BoardState boardState, EventManager eventManager, int playerID, int spellDamage) {
+    public void play(Creature target, BoardState boardState, int playerID, int spellDamage) {
         //target.accept(new CombinationBuff().add(new AttackBuff(4)).add(new HealthBuff(4)));
         //target.accept(new OneTurnBuff());
         target.accept(new OneTurnAttackBuff(2));

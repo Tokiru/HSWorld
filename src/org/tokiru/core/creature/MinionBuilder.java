@@ -18,7 +18,7 @@ public class MinionBuilder {
     private Creature.Race race;
     private boolean targetImmune;
 
-    private SkeletonCreature creature;
+    private SkeletalCreature creature;
 
     public MinionBuilder() {
 
@@ -86,15 +86,12 @@ public class MinionBuilder {
     }
 
     public MinionBuilder compile() {
-        creature = new SkeletonCreature();
-        creature.name = name;
-        creature.attack = attack;
-        creature.health = health;
+        creature = new SkeletalCreature(health, attack, name);
         creature.taunt = taunt;
         creature.divineShield = divineShield;
         creature.charge = charge;
         creature.spellDamage = spellDamage;
-        creature.windFurry = windFurry;
+        creature.setWindFurry(windFurry);
         creature.race = race;
         creature.targetImmune = targetImmune;
         return this;

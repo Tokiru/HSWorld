@@ -18,7 +18,7 @@ public interface Creature extends Subscriber {
 
     void takeHeal(int heal);
 
-    void spawn(Player owner, BoardState boardState, EventManager eventManager, Creature target);
+    void spawn(Player owner, BoardState boardState, Creature target);
 
     void die();
 
@@ -49,6 +49,8 @@ public interface Creature extends Subscriber {
     void changeAttack(int value);
 
     void changeHealth(int value);
+
+    int getMaxHealth();
 
     void setAttack(int value);
 

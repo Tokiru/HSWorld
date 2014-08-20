@@ -1,7 +1,7 @@
 package org.tokiru.core.card.secret.mage;
 
 import org.tokiru.core.board.BoardState;
-import org.tokiru.core.card.secret.SkeletonSecret;
+import org.tokiru.core.card.secret.SkeletalSecret;
 import org.tokiru.core.event.AttackEvent;
 import org.tokiru.core.event.Event;
 import org.tokiru.core.player.Player;
@@ -10,7 +10,7 @@ import org.tokiru.core.secret.Secret;
 /**
  * Created by tokiru.
  */
-public class IceBarrier extends SkeletonSecret implements Secret {
+public class IceBarrier extends SkeletalSecret implements Secret {
     @Override
     public void play(Player owner, BoardState boardState) {
         super.play(owner, boardState);

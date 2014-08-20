@@ -5,7 +5,7 @@ import org.tokiru.core.event.Event;
 /**
  * Created by tokiru.
  */
-public class HealthBuff extends SkeletonBuff implements Buff {
+public class HealthBuff extends SkeletalBuff implements Buff {
     public int healthBuff;
 
     public HealthBuff(int healthBuff) {

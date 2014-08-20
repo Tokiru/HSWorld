@@ -2,7 +2,7 @@ package org.tokiru.core.buff;
 
 import org.tokiru.core.board.BoardState;
 import org.tokiru.core.creature.Creature;
-import org.tokiru.core.creature.SkeletonCreature;
+import org.tokiru.core.creature.SkeletalCreature;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ public class BuffManager {
     private Creature creature;
     private BoardState boardState;
 
-    public BuffManager(SkeletonCreature creature) {
+    public BuffManager(SkeletalCreature creature) {
         buffList = new ArrayList<>();
         this.creature = creature;
     }

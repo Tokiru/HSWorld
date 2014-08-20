@@ -2,9 +2,8 @@ package org.tokiru.core.creature.neutral;
 
 import org.tokiru.core.board.BoardState;
 import org.tokiru.core.creature.Creature;
-import org.tokiru.core.creature.SkeletonCreature;
+import org.tokiru.core.creature.SkeletalCreature;
 import org.tokiru.core.event.Event;
-import org.tokiru.core.event.EventManager;
 import org.tokiru.core.event.SummonMinionEvent;
 import org.tokiru.core.player.Player;
 
@@ -13,7 +12,7 @@ import java.util.List;
 /**
  * Created by tokiru.
  */
-public class KnifeJuggler extends SkeletonCreature implements Creature {
+public class KnifeJuggler extends SkeletalCreature implements Creature {
     public KnifeJuggler() {
         name = "Knife Juggler";
         attack = 3;
@@ -21,8 +20,8 @@ public class KnifeJuggler extends SkeletonCreature implements Creature {
     }
 
     @Override
-    public void spawn(Player owner, BoardState boardState, EventManager eventManager, Creature target) {
-        super.spawn(owner, boardState, eventManager, null);
+    public void spawn(Player owner, BoardState boardState, Creature target) {
+        super.spawn(owner, boardState, null);
         eventManager.subscribe(this, Event.EventType.SUMMON_MINION);
     }
 

@@ -3,7 +3,7 @@ package org.tokiru.core.card.creature;
 import org.tokiru.core.board.BoardState;
 import org.tokiru.core.card.Card;
 import org.tokiru.core.creature.Creature;
-import org.tokiru.core.creature.SkeletonCreature;
+import org.tokiru.core.creature.SkeletalCreature;
 
 /**
  * Created by tokiru.
@@ -13,12 +13,12 @@ public class MinionCard implements Card {
     private Creature creature;
 
     public MinionCard(int cost, int health, int attack) {
-        creature = new SkeletonCreature(health, attack);
+        creature = new SkeletalCreature(health, attack);
         this.cost = cost;
     }
 
     public MinionCard(int cost, int health, int attack, String name) {
-        creature = new SkeletonCreature(health, attack, name);
+        creature = new SkeletalCreature(health, attack, name);
         this.cost = cost;
     }
 
@@ -27,7 +27,7 @@ public class MinionCard implements Card {
         this.cost = cost;
     }
 
-    public MinionCard(SkeletonCreature creature) {
+    public MinionCard(SkeletalCreature creature) {
         this(creature.getCost(), creature);
     }
 

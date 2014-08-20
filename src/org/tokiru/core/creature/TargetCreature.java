@@ -2,13 +2,13 @@ package org.tokiru.core.creature;
 
 import org.tokiru.core.board.BoardState;
 import org.tokiru.core.creature.Creature;
-import org.tokiru.core.creature.SkeletonCreature;
+import org.tokiru.core.creature.SkeletalCreature;
 import org.tokiru.core.hero.Hero;
 
 /**
  * Created by tokiru.
  */
-public class TargetCreature extends SkeletonCreature implements Creature {
+public class TargetCreature extends SkeletalCreature implements Creature {
     private boolean validateHero;
 
     public TargetCreature(int health, int attack, String name, int cost, boolean validateHero) {

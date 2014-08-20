@@ -2,17 +2,16 @@ package org.tokiru.core.card.spell.rogue;
 
 import org.tokiru.core.board.BoardState;
 import org.tokiru.core.card.Card;
-import org.tokiru.core.card.SkeletonCard;
-import org.tokiru.core.card.spell.SkeletonSpellCard;
+import org.tokiru.core.card.SkeletalCard;
+import org.tokiru.core.card.spell.SkeletalSpellCard;
 import org.tokiru.core.creature.Creature;
 import org.tokiru.core.event.Event;
-import org.tokiru.core.event.EventManager;
 import org.tokiru.core.event.Subscriber;
 
 /**
  * Created by tokiru.
  */
-public abstract class ComboCard extends SkeletonSpellCard implements Card, Subscriber {
+public abstract class ComboCard extends SkeletalSpellCard implements Card, Subscriber {
 
     private BoardState boardState;
     protected boolean comboActive;

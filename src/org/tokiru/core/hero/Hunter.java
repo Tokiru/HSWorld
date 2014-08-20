@@ -5,7 +5,6 @@ import org.tokiru.core.card.Card;
 import org.tokiru.core.card.spell.NonTargetSpellCard;
 import org.tokiru.core.card.spell.SpellCard;
 import org.tokiru.core.creature.Creature;
-import org.tokiru.core.event.EventManager;
 
 /**
  * Created by tokiru.
@@ -31,7 +30,7 @@ public class Hunter implements HeroClass {
             super(2, "Steady Shot");
         }
         @Override
-        public void play(Creature target, BoardState boardState, EventManager eventManager, int playerID, int spellDamage) {
+        public void play(Creature target, BoardState boardState, int playerID, int spellDamage) {
             assert target == null;
             boardState.getHero(1 - playerID).takeDamage(2);
         }

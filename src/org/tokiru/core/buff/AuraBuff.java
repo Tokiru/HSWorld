@@ -8,7 +8,7 @@ import org.tokiru.core.event.Event;
 /**
  * Created by tokiru.
  */
-public class AuraBuff extends SkeletonBuff implements Buff {
+public class AuraBuff extends SkeletalBuff implements Buff {
 
     public AuraBuff(Buff innerBuff) {
         this.innerBuff = innerBuff;

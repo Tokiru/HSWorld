@@ -2,12 +2,12 @@ package org.tokiru.core.creature.neutral;
 
 import org.tokiru.core.buff.HealthBuff;
 import org.tokiru.core.creature.Creature;
-import org.tokiru.core.creature.SkeletonCreature;
+import org.tokiru.core.creature.SkeletalCreature;
 
 /**
  * Created by tokiru.
  */
-public class TwilightDrake extends SkeletonCreature implements Creature {
+public class TwilightDrake extends SkeletalCreature implements Creature {
     public TwilightDrake() {
         super(1, 4, "Twilight Drake", 4);
         race = Race.DRAGON;

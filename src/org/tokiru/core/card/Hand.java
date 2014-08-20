@@ -67,6 +67,10 @@ public class Hand implements Subscriber {
         return cards.size();
     }
 
+    public Card get(int index) {
+        return cards.get(index);
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("[");

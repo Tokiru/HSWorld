@@ -3,6 +3,7 @@ package org.tokiru.core.board;
 import org.tokiru.core.card.Hand;
 import org.tokiru.core.creature.Creature;
 import org.tokiru.core.deck.Deck;
+import org.tokiru.core.event.Event;
 import org.tokiru.core.event.EventManager;
 import org.tokiru.core.hero.Hero;
 import org.tokiru.core.player.Player;
@@ -27,15 +28,33 @@ public class BoardState {
         }
 
         turnCount = 0;
+        this.eventManager = new EventManager();
+    }
 
+    public BoardState(Player player1, Player player2, Hero hero1, Hero hero2, Hand hand1, Hand hand2, List<Creature> creature1, List<Creature> creature2) {
+        this();
+        player1.setID(0);
+        player2.setID(1);
+        setPlayer(player1);
+        setPlayer(player2);
+        setHero(hero1, 0);
+        setHero(hero2, 1);
+        setHand(hand1, 0);
+        setHand(hand2, 1);
+        for (Creature creature : creature1) {
+            addCreature(creature, null, 0);
+        }
+
+        for (Creature creature : creature2) {
+            addCreature(creature, null, 1);
+        }
+
+        getEventManager().subscribe(getHand(0), Event.EventType.END_TURN);
+        getEventManager().subscribe(getHand(1), Event.EventType.END_TURN);
     }
 
     public EventManager getEventManager() {
         return eventManager;
-    }
-
-    public void setEventManager(EventManager eventManager) {
-        this.eventManager = eventManager;
     }
 
     public void setHero(Hero hero, int playerID) {
@@ -64,22 +83,22 @@ public class BoardState {
 
     public void addCreature(Creature creature, Creature target, int index, int playerID) {
         playerStates.get(playerID).addCreature(creature, index);
-        creature.spawn(playerStates.get(playerID).getPlayer(), this, eventManager, target);
+        creature.spawn(playerStates.get(playerID).getPlayer(), this, target);
     }
 
     public void addCreature(Creature creature, Creature target, int playerID) {
         playerStates.get(playerID).addCreature(creature);
-        creature.spawn(playerStates.get(playerID).getPlayer(), this, eventManager, target);
+        creature.spawn(playerStates.get(playerID).getPlayer(), this, target);
     }
 
     public void addCreatureLeft(Creature creature, Creature base, Creature target, int playerID) {
         playerStates.get(playerID).addCreatureLeft(creature, base);
-        creature.spawn(playerStates.get(playerID).getPlayer(), this, eventManager, target);
+        creature.spawn(playerStates.get(playerID).getPlayer(), this, target);
     }
 
     public void addCreatureRight(Creature creature, Creature base, Creature target, int playerID) {
         playerStates.get(playerID).addCreatureRight(creature, base);
-        creature.spawn(playerStates.get(playerID).getPlayer(), this, eventManager, target);
+        creature.spawn(playerStates.get(playerID).getPlayer(), this, target);
     }
 
     public void removeCreature(Creature creature) {

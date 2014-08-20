@@ -6,7 +6,7 @@ import org.tokiru.core.creature.Creature;
 /**
  * Created by tokiru.
  */
-public abstract class NonTargetSpellCard extends SkeletonSpellCard implements SpellCard {
+public abstract class NonTargetSpellCard extends SkeletalSpellCard implements SpellCard {
     public NonTargetSpellCard(int cost) {
         super(cost);
     }

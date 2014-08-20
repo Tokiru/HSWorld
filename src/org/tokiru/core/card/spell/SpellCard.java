@@ -9,6 +9,6 @@ import org.tokiru.core.event.EventManager;
  * Created by tokiru.
  */
 public interface SpellCard extends Card {
-    void play(Creature target, BoardState boardState, EventManager eventManager, int playerID, int spellDamage);
+    void play(Creature target, BoardState boardState, int playerID, int spellDamage);
     void init(BoardState boardState);
 }

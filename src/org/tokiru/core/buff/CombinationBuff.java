@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by tokiru.
  */
-public class CombinationBuff extends SkeletonBuff implements Buff {
+public class CombinationBuff extends SkeletalBuff implements Buff {
     private boolean initialized;
 
     public CombinationBuff() {

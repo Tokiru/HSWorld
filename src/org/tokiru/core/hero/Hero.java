@@ -1,7 +1,7 @@
 package org.tokiru.core.hero;
 
 import org.tokiru.core.creature.Creature;
-import org.tokiru.core.creature.SkeletonCreature;
+import org.tokiru.core.creature.SkeletalCreature;
 import org.tokiru.core.event.Event;
 import org.tokiru.core.event.Subscriber;
 import org.tokiru.core.weapon.Weapon;
@@ -9,7 +9,7 @@ import org.tokiru.core.weapon.Weapon;
 /**
  * Created by tokiru.
  */
-public class Hero extends SkeletonCreature implements Creature, Subscriber {
+public class Hero extends SkeletalCreature implements Creature, Subscriber {
 
     private HeroClass heroClass;
     private Weapon weapon;

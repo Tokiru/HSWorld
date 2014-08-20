@@ -4,12 +4,14 @@ package org.tokiru.core.turn;
  * Created by tokiru.
  */
 public class PlayCardTurn extends Turn {
+    private final int position;
     private int cardID;
     private int targetID;
 
-    public PlayCardTurn(int cardID, int targetID) {
+    public PlayCardTurn(int cardID, int targetID, int position) {
         this.cardID = cardID;
         this.targetID = targetID;
+        this.position = position;
     }
 
     public int getCardID() {
@@ -18,6 +20,10 @@ public class PlayCardTurn extends Turn {
 
     public int getTargetID() {
         return targetID;
+    }
+
+    public int getPosition() {
+        return position;
     }
 
     @Override

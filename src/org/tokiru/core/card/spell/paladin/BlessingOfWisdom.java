@@ -1,29 +1,27 @@
 package org.tokiru.core.card.spell.paladin;
 
 import org.tokiru.core.board.BoardState;
-import org.tokiru.core.buff.Buff;
-import org.tokiru.core.buff.SkeletonBuff;
+import org.tokiru.core.buff.SkeletalBuff;
 import org.tokiru.core.card.Card;
-import org.tokiru.core.card.spell.SkeletonSpellCard;
+import org.tokiru.core.card.spell.SkeletalSpellCard;
 import org.tokiru.core.card.spell.SpellCard;
 import org.tokiru.core.creature.Creature;
 import org.tokiru.core.event.AttackEvent;
 import org.tokiru.core.event.Event;
-import org.tokiru.core.event.EventManager;
 import org.tokiru.core.hero.Hero;
 
 /**
  * Created by tokiru.
  */
-public class BlessingOfWisdom extends SkeletonSpellCard implements SpellCard{
+public class BlessingOfWisdom extends SkeletalSpellCard implements SpellCard{
 
     public BlessingOfWisdom() {
         super(1, "Blessing of Wisdom");
     }
 
     @Override
-    public void play(Creature target, BoardState boardState, EventManager eventManager, int playerID, int spellDamage) {
-        target.accept(new SkeletonBuff() {
+    public void play(Creature target, BoardState boardState, int playerID, int spellDamage) {
+        target.accept(new SkeletalBuff() {
 
             @Override
             public void accept(Event event) {

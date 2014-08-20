@@ -6,9 +6,8 @@ import org.tokiru.core.card.spell.NonTargetSpellCard;
 import org.tokiru.core.card.spell.SpellCard;
 import org.tokiru.core.creature.Creature;
 import org.tokiru.core.creature.MinionBuilder;
-import org.tokiru.core.creature.SkeletonCreature;
+import org.tokiru.core.creature.SkeletalCreature;
 import org.tokiru.core.event.Event;
-import org.tokiru.core.event.EventManager;
 
 /**
  * Created by tokiru.
@@ -36,7 +35,7 @@ public class Shaman implements HeroClass {
         }
 
         @Override
-        public void play(Creature target, BoardState boardState, EventManager eventManager, int playerID, int spellDamage) {
+        public void play(Creature target, BoardState boardState, int playerID, int spellDamage) {
             int totemType = (int) (Math.random() * 4);
             Creature totem;
             if (totemType == 0) {
@@ -53,7 +52,7 @@ public class Shaman implements HeroClass {
             boardState.addCreature(totem, null, playerID);
         }
 
-        private class HealingTotem extends SkeletonCreature implements Creature {
+        private class HealingTotem extends SkeletalCreature implements Creature {
             public HealingTotem() {
                 super(1, 1, "Healing totem");
             }

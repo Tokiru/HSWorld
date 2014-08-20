@@ -8,7 +8,7 @@ import org.tokiru.core.event.Event;
 /**
  * Created by tokiru.
  */
-public class OneTurnBuff extends SkeletonBuff implements Buff {
+public class OneTurnBuff extends SkeletalBuff implements Buff {
     @Override
     public void discard() {
         super.discard();

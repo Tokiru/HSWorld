@@ -6,7 +6,6 @@ import org.tokiru.core.card.spell.NonTargetSpellCard;
 import org.tokiru.core.card.spell.SpellCard;
 import org.tokiru.core.creature.Creature;
 import org.tokiru.core.creature.MinionBuilder;
-import org.tokiru.core.event.EventManager;
 
 /**
  * Created by tokiru.
@@ -34,7 +33,7 @@ public class Paladin implements HeroClass {
         }
 
         @Override
-        public void play(Creature target, BoardState boardState, EventManager eventManager, int playerID, int spellDamage) {
+        public void play(Creature target, BoardState boardState, int playerID, int spellDamage) {
             Creature creature = new MinionBuilder().setHealth(1).setAttack(1).setName("Silverhand Recruit").compile().getCreature();
             boardState.addCreature(creature, null, playerID);
         }
